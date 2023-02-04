@@ -1,0 +1,2 @@
+# Prototype
+Prototype for MInG
