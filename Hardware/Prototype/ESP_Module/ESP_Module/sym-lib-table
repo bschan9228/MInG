@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "48037-0001")(type "KiCad")(uri "C:/Users/bscha/Desktop/MInG/Hardware/Prototype/ESP_Module/lib/48037-0001/48037-0001.kicad_sym")(options "")(descr ""))
+  (lib (name "ESP32-S3-MINI-1-N8")(type "Legacy")(uri "C:/Users/bscha/Desktop/MInG/Hardware/Prototype/ESP_Module/lib/ESP32-S3-MINI-1-N8/ESP32-S3-MINI-1-N8.lib")(options "")(descr ""))
+)
