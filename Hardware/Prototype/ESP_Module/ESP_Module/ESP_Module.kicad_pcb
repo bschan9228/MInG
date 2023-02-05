@@ -745,6 +745,11 @@
         )
       )
     )
+    (model "C:/Users/bscha/Desktop/MInG/Hardware/Prototype/ESP_Module/lib/ESP32-S3-MINI-1-N8/ESP32-S3-MINI-1-N8.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
@@ -935,6 +940,11 @@
       (net 2 "GND") (pinfunction "SHIELD") (pintype "passive") (tstamp 9aae103d-75cd-4525-83b6-bb67af188dac))
     (pad "S2" thru_hole oval (at -5.7 0) (size 1.575 3.15) (drill oval 1.05 2.6) (layers *.Cu *.Mask)
       (net 2 "GND") (pinfunction "SHIELD") (pintype "passive") (tstamp efffdbc4-1960-4165-a72f-94cf8ef26596))
+    (model "C:/Users/bscha/Desktop/MInG/Hardware/Prototype/ESP_Module/lib/48037-0001/48037-0001.step"
+      (offset (xyz 0 -17.5 1))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")

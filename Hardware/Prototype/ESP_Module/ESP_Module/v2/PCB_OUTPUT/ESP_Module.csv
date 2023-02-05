@@ -1,0 +1,12 @@
+Comment,Designator,Footprint,LCSC Part #
+22u Unpolarized capacitor,"C1,C3,C4",C_0603_1608Metric,C59461
+.1u Unpolarized capacitor,C2,C_0402_1005Metric,C1525
+LED Light emitting diode,D1,LED_0603_1608Metric,C72043
+48037-0001 ,J1,MOLEX_48037-0001,C136455
+USB_C_Plug USB Type-C Plug connector,P1,USB_C_Plug_Molex_105444,C319150
+0 Resistor,"R1,R2",R_0603_1608Metric,C17168
+"10k Resistor, small symbol",R3,R_0603_1608Metric,C25744
+5k1 Resistor,"R4,R5,R6",R_0402_1005Metric,C25905
+SW_SPST Single Pole Single Throw (SPST) switch,"SW1,SW2",SW_SPST_PTS810,C92589
+"AMS1117-3.3 1A Low Dropout regulator, positive, 3.3V fixed output, SOT-223",U1,SOT-223-3_TabPin2,C6186
+ESP32-S3-MINI-1-N8 ,U2,XCVR_ESP32-S3-MINI-1-N8,C2913206
