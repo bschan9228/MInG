@@ -2,3 +2,5 @@ Please check the following:
 PCB Thickness: 0.8
 Impedance Control: Yes
 Layer Stackup: JLC04081H-7628
+
++ add solder stencil
