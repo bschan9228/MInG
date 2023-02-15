@@ -1806,6 +1806,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
+    (model "C:/Users/bscha/Desktop/MInG/Hardware/Prototype/ESP_SoC/lib/Crystal/QFN_2016_4pins.STEP"
+      (offset (xyz 0 0 0.75))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 -90 0))
+    )
   )
 
   (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")

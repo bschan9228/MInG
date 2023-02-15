@@ -394,7 +394,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../../../../ESP_SoC.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
