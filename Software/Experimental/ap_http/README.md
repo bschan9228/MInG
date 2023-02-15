@@ -1,0 +1,1 @@
+# HTTP & access poin, combined from 2 template codes
