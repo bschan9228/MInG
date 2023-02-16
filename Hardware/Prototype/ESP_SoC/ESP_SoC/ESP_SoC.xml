@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Users\bscha\Desktop\MInG\Hardware\Prototype\ESP_SoC\ESP_SoC\ESP_SoC.kicad_sch</source>
-    <date>2/10/2023 12:12:19 AM</date>
+    <date>2/15/2023 6:23:40 PM</date>
     <tool>Eeschema (6.0.7)</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -28,8 +28,7 @@
       <value>2450AT18A100E</value>
       <footprint>2450AT18A100E:ANTC3216X140N</footprint>
       <fields>
-        <field name="LCSC Part">C89334</field>
-        <field name="LCSC Part #">C89334</field>
+        <field name="LCSC Part #">609-2450AT18A100E</field>
         <field name="MANUFACTURER">JOHANSON DESIGN</field>
         <field name="PARTREV">1.3</field>
         <field name="STANDARD">IPC-7351B</field>
@@ -38,8 +37,8 @@
       <property name="MANUFACTURER" value="JOHANSON DESIGN"/>
       <property name="PARTREV" value="1.3"/>
       <property name="STANDARD" value="IPC-7351B"/>
-      <property name="LCSC Part #" value="C89334"/>
-      <property name="LCSC Part" value="C89334"/>
+      <property name="LCSC Part #" value="609-2450AT18A100E"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -48,13 +47,9 @@
     <comp ref="C1">
       <value>1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C14445</field>
-        <field name="LCSC Part #">C14445</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C14445"/>
-      <property name="LCSC Part" value="C14445"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -63,13 +58,9 @@
     <comp ref="C2">
       <value>0.1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C1525</field>
-        <field name="LCSC Part #">C1525</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C1525"/>
-      <property name="LCSC Part" value="C1525"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -78,13 +69,9 @@
     <comp ref="C3">
       <value>3.3p</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C415378</field>
-        <field name="LCSC Part #">C415378</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C415378"/>
-      <property name="LCSC Part" value="C415378"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -93,13 +80,9 @@
     <comp ref="C4">
       <value>3.3p</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C415378</field>
-        <field name="LCSC Part #">C415378</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C415378"/>
-      <property name="LCSC Part" value="C415378"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -108,13 +91,9 @@
     <comp ref="C5">
       <value>0.1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C1525</field>
-        <field name="LCSC Part #">C1525</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C1525"/>
-      <property name="LCSC Part" value="C1525"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -123,13 +102,9 @@
     <comp ref="C6">
       <value>0.1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C1525</field>
-        <field name="LCSC Part #">C1525</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C1525"/>
-      <property name="LCSC Part" value="C1525"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -138,13 +113,9 @@
     <comp ref="C7">
       <value>1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C14445</field>
-        <field name="LCSC Part #">C14445</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C14445"/>
-      <property name="LCSC Part" value="C14445"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -153,13 +124,9 @@
     <comp ref="C8">
       <value>10u</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C1691</field>
-        <field name="LCSC Part #">C1691</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C1691"/>
-      <property name="LCSC Part" value="C1691"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -168,13 +135,9 @@
     <comp ref="C9">
       <value>0.1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C1525</field>
-        <field name="LCSC Part #">C1525</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C1525"/>
-      <property name="LCSC Part" value="C1525"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -183,13 +146,9 @@
     <comp ref="C10">
       <value>0.1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C1525</field>
-        <field name="LCSC Part #">C1525</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C1525"/>
-      <property name="LCSC Part" value="C1525"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -198,13 +157,9 @@
     <comp ref="C11">
       <value>1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C14445</field>
-        <field name="LCSC Part #">C14445</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C14445"/>
-      <property name="LCSC Part" value="C14445"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -213,13 +168,9 @@
     <comp ref="C12">
       <value>1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C14445</field>
-        <field name="LCSC Part #">C14445</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C14445"/>
-      <property name="LCSC Part" value="C14445"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -228,43 +179,31 @@
     <comp ref="C13">
       <value>1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C14445</field>
-        <field name="LCSC Part #">C14445</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C14445"/>
-      <property name="LCSC Part" value="C14445"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>b3b850d8-a014-41de-b063-2abe53c425bf</tstamps>
     </comp>
     <comp ref="C14">
-      <value>8p</value>
+      <value>12p</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C281765</field>
-        <field name="LCSC Part #">C281765</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C281765"/>
-      <property name="LCSC Part" value="C281765"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>b8839f0f-2f3e-4ec7-8cee-ff0d28e0e12f</tstamps>
     </comp>
     <comp ref="C15">
-      <value>8p</value>
+      <value>12p</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C281765</field>
-        <field name="LCSC Part #">C281765</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C281765"/>
-      <property name="LCSC Part" value="C281765"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -273,13 +212,9 @@
     <comp ref="C16">
       <value>1u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C14445</field>
-        <field name="LCSC Part #">C14445</field>
-      </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC Part #" value="C14445"/>
-      <property name="LCSC Part" value="C14445"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -289,12 +224,11 @@
       <value>NSR0320</value>
       <footprint>Diode_SMD:D_SOD-323F</footprint>
       <fields>
-        <field name="LCSC Part">C48192</field>
-        <field name="LCSC Part #">C48192</field>
+        <field name="LCSC Part #">863-NSR0320MW2T3G</field>
       </fields>
       <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
-      <property name="LCSC Part #" value="C48192"/>
-      <property name="LCSC Part" value="C48192"/>
+      <property name="LCSC Part #" value="863-NSR0320MW2T3G"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -304,12 +238,11 @@
       <value>NSR0320</value>
       <footprint>Diode_SMD:D_SOD-323F</footprint>
       <fields>
-        <field name="LCSC Part">C48192</field>
-        <field name="LCSC Part #">C48192</field>
+        <field name="LCSC Part #">863-NSR0320MW2T3G</field>
       </fields>
       <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
-      <property name="LCSC Part #" value="C48192"/>
-      <property name="LCSC Part" value="C48192"/>
+      <property name="LCSC Part #" value="863-NSR0320MW2T3G"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -320,12 +253,11 @@
       <footprint>Connector_USB:USB_A_CNCTech_1001-011-01101_Horizontal</footprint>
       <datasheet> ~</datasheet>
       <fields>
-        <field name="LCSC Part">C136456</field>
-        <field name="LCSC Part #">C136456</field>
+        <field name="LCSC Part #">640-USB1061-GF-L-A</field>
       </fields>
       <libsource lib="Connector" part="USB_A" description="USB Type A connector"/>
-      <property name="LCSC Part #" value="C136456"/>
-      <property name="LCSC Part" value="C136456"/>
+      <property name="LCSC Part #" value="640-USB1061-GF-L-A"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -353,12 +285,11 @@
       <value>2.2nH</value>
       <footprint>Inductor_SMD:L_0402_1005Metric</footprint>
       <fields>
-        <field name="LCSC Part">C91240</field>
-        <field name="LCSC Part #">C91240</field>
+        <field name="LCSC Part #">810-MLG1005S2N2BTD25</field>
       </fields>
       <libsource lib="Device" part="L_Small" description="Inductor, small symbol"/>
-      <property name="LCSC Part #" value="C91240"/>
-      <property name="LCSC Part" value="C91240"/>
+      <property name="LCSC Part #" value="810-MLG1005S2N2BTD25"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -368,12 +299,11 @@
       <value>2.2nH</value>
       <footprint>Inductor_SMD:L_0402_1005Metric</footprint>
       <fields>
-        <field name="LCSC Part">C91240</field>
-        <field name="LCSC Part #">C91240</field>
+        <field name="LCSC Part #">810-MLG1005S2N2BTD25</field>
       </fields>
       <libsource lib="Device" part="L_Small" description="Inductor, small symbol"/>
-      <property name="LCSC Part #" value="C91240"/>
-      <property name="LCSC Part" value="C91240"/>
+      <property name="LCSC Part #" value="810-MLG1005S2N2BTD25"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -384,12 +314,11 @@
       <footprint>Connector_USB:USB_C_Plug_Molex_105444</footprint>
       <datasheet>https://www.usb.org/sites/default/files/documents/usb_type-c.zip</datasheet>
       <fields>
-        <field name="LCSC Part">C134082</field>
-        <field name="LCSC Part #">C134082</field>
+        <field name="LCSC Part #">538-105444-0001</field>
       </fields>
       <libsource lib="Connector" part="USB_C_Plug" description="USB Type-C Plug connector"/>
-      <property name="LCSC Part #" value="C134082"/>
-      <property name="LCSC Part" value="C134082"/>
+      <property name="LCSC Part #" value="538-105444-0001"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -398,13 +327,9 @@
     <comp ref="R1">
       <value>0</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C21376</field>
-        <field name="LCSC Part #">C21376</field>
-      </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC Part #" value="C21376"/>
-      <property name="LCSC Part" value="C21376"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -413,13 +338,9 @@
     <comp ref="R2">
       <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C60490</field>
-        <field name="LCSC Part #">C60490</field>
-      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC Part #" value="C60490"/>
-      <property name="LCSC Part" value="C60490"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -428,13 +349,9 @@
     <comp ref="R3">
       <value>0</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C21376</field>
-        <field name="LCSC Part #">C21376</field>
-      </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC Part #" value="C21376"/>
-      <property name="LCSC Part" value="C21376"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -443,13 +360,9 @@
     <comp ref="R4">
       <value>0</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C21376</field>
-        <field name="LCSC Part #">C21376</field>
-      </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC Part #" value="C21376"/>
-      <property name="LCSC Part" value="C21376"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -458,13 +371,9 @@
     <comp ref="R5">
       <value>5k1</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C105872</field>
-        <field name="LCSC Part #">C105872</field>
-      </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC Part #" value="C105872"/>
-      <property name="LCSC Part" value="C105872"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -473,13 +382,9 @@
     <comp ref="R6">
       <value>5k1</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC Part">C105872</field>
-        <field name="LCSC Part #">C105872</field>
-      </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC Part #" value="C105872"/>
-      <property name="LCSC Part" value="C105872"/>
+      <property name="LCSC Part #" value=""/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -489,12 +394,11 @@
       <value>RESET</value>
       <footprint>Button_Switch_SMD:SW_SPST_PTS810</footprint>
       <fields>
-        <field name="LCSC Part">C221897</field>
-        <field name="LCSC Part #">C221897</field>
+        <field name="LCSC Part #">611-PTS810SJM250SMTR</field>
       </fields>
       <libsource lib="Switch" part="SW_SPST" description="Single Pole Single Throw (SPST) switch"/>
-      <property name="LCSC Part #" value="C221897"/>
-      <property name="LCSC Part" value="C221897"/>
+      <property name="LCSC Part #" value="611-PTS810SJM250SMTR"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -504,12 +408,11 @@
       <value>BOOT</value>
       <footprint>Button_Switch_SMD:SW_SPST_PTS810</footprint>
       <fields>
-        <field name="LCSC Part">C221896</field>
-        <field name="LCSC Part #">C221896</field>
+        <field name="LCSC Part #">611-PTS810SJM250SMTR</field>
       </fields>
       <libsource lib="Switch" part="SW_SPST" description="Single Pole Single Throw (SPST) switch"/>
-      <property name="LCSC Part #" value="C221896"/>
-      <property name="LCSC Part" value="C221896"/>
+      <property name="LCSC Part #" value="611-PTS810SJM250SMTR"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -520,12 +423,11 @@
       <footprint>Package_TO_SOT_SMD:SOT-23-5</footprint>
       <datasheet>https://www.diodes.com/assets/Datasheets/AP2112.pdf</datasheet>
       <fields>
-        <field name="LCSC Part">C51118</field>
-        <field name="LCSC Part #">C51118</field>
+        <field name="LCSC Part #">621-AP2112K-3.3TRG1</field>
       </fields>
       <libsource lib="Regulator_Linear" part="AP2112K-3.3" description="600mA low dropout linear regulator, with enable pin, 3.8V-6V input voltage range, 3.3V fixed positive output, SOT-23-5"/>
-      <property name="LCSC Part #" value="C51118"/>
-      <property name="LCSC Part" value="C51118"/>
+      <property name="LCSC Part #" value="621-AP2112K-3.3TRG1"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -537,6 +439,7 @@
       <fields>
         <field name="Availability">In Stock</field>
         <field name="Description">Espressif Systems [ENGINEERING SAMPLES]SMD IC , Dual-Core MCU, Wi-Fi 2.4G &amp; BLE 5.0 combo, 8 MB Octal SPI PSRAM, QFN 56-pin, 7*7 mm</field>
+        <field name="LCSC Part #">356-ESP32-S3FN8</field>
         <field name="MF">Espressif Systems</field>
         <field name="MP">ESP32-S3FN8</field>
         <field name="Package">None</field>
@@ -551,6 +454,7 @@
       <property name="Package" value="None"/>
       <property name="MP" value="ESP32-S3FN8"/>
       <property name="Description" value="Espressif Systems [ENGINEERING SAMPLES]SMD IC , Dual-Core MCU, Wi-Fi 2.4G &amp; BLE 5.0 combo, 8 MB Octal SPI PSRAM, QFN 56-pin, 7*7 mm"/>
+      <property name="LCSC Part #" value="356-ESP32-S3FN8"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -560,12 +464,11 @@
       <value>40MHz</value>
       <footprint>Crystal:Crystal_SMD_2016-4Pin_2.0x1.6mm</footprint>
       <fields>
-        <field name="LCSC Part">C187794</field>
-        <field name="LCSC Part #">C187794</field>
+        <field name="LCSC Part #">520-400-10-37B2CKYTR</field>
       </fields>
       <libsource lib="Device" part="Crystal_GND24" description="Four pin crystal, GND on pins 2 and 4"/>
-      <property name="LCSC Part #" value="C187794"/>
-      <property name="LCSC Part" value="C187794"/>
+      <property name="LCSC Part #" value="520-400-10-37B2CKYTR"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="ESP_SoC.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

@@ -23359,6 +23359,293 @@
                 "id": "component-config-supplicant",
                 "title": "Supplicant",
                 "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "Specify verbosity of TinyUSB log output.",
+                        "id": "TINYUSB_DEBUG_LEVEL",
+                        "name": "TINYUSB_DEBUG_LEVEL",
+                        "range": [
+                            0,
+                            3
+                        ],
+                        "title": "TinyUSB log level (0-3)",
+                        "type": "int"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "This option allows to not create the FreeRTOS task during the driver initialization.\nUser will have to handle TinyUSB events manually.",
+                                "id": "TINYUSB_NO_DEFAULT_TASK",
+                                "name": "TINYUSB_NO_DEFAULT_TASK",
+                                "range": null,
+                                "title": "Do not create a TinyUSB task",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "!TINYUSB_NO_DEFAULT_TASK",
+                                "help": "Set the priority of the default TinyUSB main task.",
+                                "id": "TINYUSB_TASK_PRIORITY",
+                                "name": "TINYUSB_TASK_PRIORITY",
+                                "range": null,
+                                "title": "TinyUSB task priority",
+                                "type": "int"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "!TINYUSB_NO_DEFAULT_TASK",
+                                "help": "Set the stack size of the default TinyUSB main task.",
+                                "id": "TINYUSB_TASK_STACK_SIZE",
+                                "name": "TINYUSB_TASK_STACK_SIZE",
+                                "range": null,
+                                "title": "TinyUSB task stack size (bytes)",
+                                "type": "int"
+                            }
+                        ],
+                        "depends_on": null,
+                        "id": "component-config-tinyusb-stack-tinyusb-task-configuration",
+                        "title": "TinyUSB task configuration",
+                        "type": "menu"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Enable this option, USB device will use Espressif's vendor ID as its VID.\nThis is helpful at product develop stage.",
+                                "id": "TINYUSB_DESC_USE_ESPRESSIF_VID",
+                                "name": "TINYUSB_DESC_USE_ESPRESSIF_VID",
+                                "range": null,
+                                "title": "VID: Use Espressif's vendor ID",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "!TINYUSB_DESC_USE_ESPRESSIF_VID",
+                                "help": "Custom Vendor ID.",
+                                "id": "TINYUSB_DESC_CUSTOM_VID",
+                                "name": "TINYUSB_DESC_CUSTOM_VID",
+                                "range": null,
+                                "title": "VID: Custom vendor ID",
+                                "type": "hex"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Default TinyUSB PID assigning uses values 0x4000...0x4007.",
+                                "id": "TINYUSB_DESC_USE_DEFAULT_PID",
+                                "name": "TINYUSB_DESC_USE_DEFAULT_PID",
+                                "range": null,
+                                "title": "PID: Use a default PID assigned to TinyUSB",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "!TINYUSB_DESC_USE_DEFAULT_PID",
+                                "help": "Custom Product ID.",
+                                "id": "TINYUSB_DESC_CUSTOM_PID",
+                                "name": "TINYUSB_DESC_CUSTOM_PID",
+                                "range": null,
+                                "title": "PID: Custom product ID",
+                                "type": "hex"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Version of the firmware of the USB device.",
+                                "id": "TINYUSB_DESC_BCD_DEVICE",
+                                "name": "TINYUSB_DESC_BCD_DEVICE",
+                                "range": null,
+                                "title": "bcdDevice",
+                                "type": "hex"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Name of the manufacturer of the USB device.",
+                                "id": "TINYUSB_DESC_MANUFACTURER_STRING",
+                                "name": "TINYUSB_DESC_MANUFACTURER_STRING",
+                                "range": null,
+                                "title": "Manufacturer name",
+                                "type": "string"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Name of the USB device.",
+                                "id": "TINYUSB_DESC_PRODUCT_STRING",
+                                "name": "TINYUSB_DESC_PRODUCT_STRING",
+                                "range": null,
+                                "title": "Product name",
+                                "type": "string"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Serial number of the USB device.",
+                                "id": "TINYUSB_DESC_SERIAL_STRING",
+                                "name": "TINYUSB_DESC_SERIAL_STRING",
+                                "range": null,
+                                "title": "Serial string",
+                                "type": "string"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "TINYUSB_CDC_ENABLED",
+                                "help": "Name of the CDC device.",
+                                "id": "TINYUSB_DESC_CDC_STRING",
+                                "name": "TINYUSB_DESC_CDC_STRING",
+                                "range": null,
+                                "title": "CDC Device String",
+                                "type": "string"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "TINYUSB_MSC_ENABLED",
+                                "help": "Name of the MSC device.",
+                                "id": "TINYUSB_DESC_MSC_STRING",
+                                "name": "TINYUSB_DESC_MSC_STRING",
+                                "range": null,
+                                "title": "MSC Device String",
+                                "type": "string"
+                            }
+                        ],
+                        "depends_on": null,
+                        "id": "component-config-tinyusb-stack-descriptor-configuration",
+                        "title": "Descriptor configuration",
+                        "type": "menu"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "TINYUSB_MSC_ENABLED",
+                                        "help": "MSC FIFO size, in bytes.",
+                                        "id": "TINYUSB_MSC_BUFSIZE",
+                                        "name": "TINYUSB_MSC_BUFSIZE",
+                                        "range": null,
+                                        "title": "MSC FIFO size",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Enable TinyUSB MSC feature.",
+                                "id": "TINYUSB_MSC_ENABLED",
+                                "name": "TINYUSB_MSC_ENABLED",
+                                "range": null,
+                                "title": "Enable TinyUSB MSC feature",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "id": "component-config-tinyusb-stack-massive-storage-class-msc-",
+                        "title": "Massive Storage Class (MSC)",
+                        "type": "menu"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "TINYUSB_CDC_ENABLED",
+                                        "help": "Number of independent serial ports.",
+                                        "id": "TINYUSB_CDC_COUNT",
+                                        "name": "TINYUSB_CDC_COUNT",
+                                        "range": null,
+                                        "title": "CDC Channel Count",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "TINYUSB_CDC_ENABLED",
+                                        "help": "CDC FIFO size of RX channel.",
+                                        "id": "TINYUSB_CDC_RX_BUFSIZE",
+                                        "name": "TINYUSB_CDC_RX_BUFSIZE",
+                                        "range": null,
+                                        "title": "CDC FIFO size of RX channel",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "TINYUSB_CDC_ENABLED",
+                                        "help": "CDC FIFO size of TX channel.",
+                                        "id": "TINYUSB_CDC_TX_BUFSIZE",
+                                        "name": "TINYUSB_CDC_TX_BUFSIZE",
+                                        "range": null,
+                                        "title": "CDC FIFO size of TX channel",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Enable TinyUSB CDC feature.",
+                                "id": "TINYUSB_CDC_ENABLED",
+                                "name": "TINYUSB_CDC_ENABLED",
+                                "range": null,
+                                "title": "Enable TinyUSB CDC feature",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "id": "component-config-tinyusb-stack-communication-device-class-cdc-",
+                        "title": "Communication Device Class (CDC)",
+                        "type": "menu"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Setting value greater than 0 will enable TinyUSB MIDI feature.",
+                                "id": "TINYUSB_MIDI_COUNT",
+                                "name": "TINYUSB_MIDI_COUNT",
+                                "range": [
+                                    0,
+                                    2
+                                ],
+                                "title": "TinyUSB MIDI interfaces count",
+                                "type": "int"
+                            }
+                        ],
+                        "depends_on": null,
+                        "id": "component-config-tinyusb-stack-musical-instrument-digital-interface-midi-",
+                        "title": "Musical Instrument Digital Interface (MIDI)",
+                        "type": "menu"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Setting value greater than 0 will enable TinyUSB HID feature.",
+                                "id": "TINYUSB_HID_COUNT",
+                                "name": "TINYUSB_HID_COUNT",
+                                "range": [
+                                    0,
+                                    4
+                                ],
+                                "title": "TinyUSB HID interfaces count",
+                                "type": "int"
+                            }
+                        ],
+                        "depends_on": null,
+                        "id": "component-config-tinyusb-stack-human-interface-device-class-hid-",
+                        "title": "Human Interface Device Class (HID)",
+                        "type": "menu"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-tinyusb-stack",
+                "title": "TinyUSB Stack",
+                "type": "menu"
             }
         ],
         "depends_on": null,

@@ -60,5 +60,7 @@ C:/Users/bscha/Desktop/MInG/Software/Experimental/ap_ws/build/esp-idf/touch_elem
 C:/Users/bscha/Desktop/MInG/Software/Experimental/ap_ws/build/esp-idf/ulp/libulp.a
 C:/Users/bscha/Desktop/MInG/Software/Experimental/ap_ws/build/esp-idf/usb/libusb.a
 C:/Users/bscha/Desktop/MInG/Software/Experimental/ap_ws/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
+C:/Users/bscha/Desktop/MInG/Software/Experimental/ap_ws/build/esp-idf/espressif__tinyusb/libespressif__tinyusb.a
+C:/Users/bscha/Desktop/MInG/Software/Experimental/ap_ws/build/esp-idf/espressif__esp_tinyusb/libespressif__esp_tinyusb.a
 C:/Users/bscha/Desktop/MInG/Software/Experimental/ap_ws/build/esp-idf/main/libmain.a
 C:/Users/bscha/Desktop/MInG/Software/Experimental/ap_ws/build/esp-idf/protocol_examples_common/libprotocol_examples_common.a

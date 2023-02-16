@@ -1,0 +1,22 @@
+Comment,Designator,Footprint,Mouser Part #,Quantity,5
+2450AT18A100E ,AE1,ANTC3216X140N,609-2450AT18A100E,1,5
+"1u Unpolarized capacitor, small symbol","C1,C7,C11,C12,C13,C16",C_0402_1005Metric,,6,30
+"0.1u Unpolarized capacitor, small symbol","C2,C5,C6,C9,C10",C_0402_1005Metric,,5,25
+"3.3p Unpolarized capacitor, small symbol","C3,C4",C_0402_1005Metric,,2,10
+"10u Unpolarized capacitor, small symbol",C8,C_0603_1608Metric,,1,5
+"12p Unpolarized capacitor, small symbol","C14,C15",C_0402_1005Metric,,2,10
+NSR0320 Schottky diode,"D1,D2",D_SOD-323F,863-NSR0320MW2T3G,2,10
+USB_A USB Type A connector,J1,USB_A_CNCTech_1001-011-01101_Horizontal,640-USB1061-GF-L-A,1,5
+"Conn_01x01 Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)","J2,J3",SolderWirePad_1x01_SMD_1x2mm,,2,10
+"2.2nH Inductor, small symbol","L1,L2",L_0402_1005Metric,810-MLG1005S2N2BTD25,2,10
+USB_C_Plug USB Type-C Plug connector,P1,USB_C_Plug_Molex_105444,538-105444-0001,1,5
+"0 Resistor, small symbol","R1,R3,R4",R_0402_1005Metric,,3,15
+10k Resistor,R2,R_0402_1005Metric,,1,5
+"5k1 Resistor, small symbol","R5,R6",R_0402_1005Metric,,2,10
+RESET Single Pole Single Throw (SPST) switch,SW1,SW_SPST_PTS810,611-PTS810SJM250SMTR,1,5
+BOOT Single Pole Single Throw (SPST) switch,SW2,SW_SPST_PTS810,611-PTS810SJM250SMTR,1,5
+"AP2112K-3.3 600mA low dropout linear regulator, with enable pin, 3.8V-6V input voltage range, 3.3V fixed positive output, SOT-23-5",U1,SOT-23-5,621-AP2112K-3.3TRG1,1,5
+ESP32-S3FN8 ,U2,QFN40P700X700X90-57N,356-ESP32-S3FN8,1,5
+"40MHz Four pin crystal, GND on pins 2 and 4",Y1,Crystal_SMD_2016-4Pin_2.0x1.6mm,520-400-10-37B2CKYTR,1,5
+,,,,,
+,,,538-48037-0001,,5
