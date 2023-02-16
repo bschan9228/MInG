@@ -40,7 +40,6 @@
 static const char *TAG = "ws_echo_server";
 
 //------------------------- USB HID -------------------------//
-#define APP_BUTTON (GPIO_NUM_0) // Use BOOT signal by default
 
 #define TUSB_DESC_TOTAL_LEN (TUD_CONFIG_DESC_LEN + CFG_TUD_HID * TUD_HID_DESC_LEN)
 
@@ -174,6 +173,55 @@ static void app_send_hid_demo(void)
     }
 }
 
+// Array
+
+static uint8_t char_to_hid(char c)
+{
+    uint8_t char_to_hid[127];
+    char_to_hid['a'] = HID_KEY_A;
+    char_to_hid['b'] = HID_KEY_B;
+    char_to_hid['c'] = HID_KEY_C;
+    char_to_hid['d'] = HID_KEY_D;
+    char_to_hid['e'] = HID_KEY_E;
+
+    char_to_hid['0'] = HID_KEY_0;
+    char_to_hid['1'] = HID_KEY_1;
+    char_to_hid['2'] = HID_KEY_2;
+    char_to_hid['3'] = HID_KEY_3;
+    char_to_hid['4'] = HID_KEY_4;
+    char_to_hid['5'] = HID_KEY_5;
+    char_to_hid['6'] = HID_KEY_6;
+    char_to_hid['7'] = HID_KEY_7;
+    char_to_hid['8'] = HID_KEY_8;
+    char_to_hid['9'] = HID_KEY_9;
+
+    return char_to_hid[c + 0];
+}
+uint8_t const conv_table[128][2] = {HID_ASCII_TO_KEYCODE};
+
+static void send_character(char c)
+{
+    // uint8_t keycode[6] = {HID_KEY_A};
+    // uint8_t keycode[6] = {char_to_hid(c)};
+    uint8_t keycode[6] = {conv_table[c + 0][1]};
+    tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, keycode);
+    // Can speed up by removing null report and adding more keycodes
+    vTaskDelay(pdMS_TO_TICKS(10));
+    tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
+    vTaskDelay(pdMS_TO_TICKS(10));
+}
+
+static void app_send_string(uint8_t *data, size_t len)
+{
+    // Keyboard sends inputted string
+    ESP_LOGI(TAG, "Sending Keyboard report");
+    // send_character(data[0]);
+    for (int i = 0; i < len; i++)
+    {
+        send_character(data[i]);
+    }
+}
+
 // --------------------------- Websockets --------------------------- //
 /* A simple example that demonstrates using websocket echo server
  */
@@ -262,8 +310,9 @@ static esp_err_t echo_handler(httpd_req_t *req)
         // ----- Sends an HID when a packet a ws packet is recieved ----- //
         if (tud_mounted())
         {
-            app_send_hid_demo();
+            app_send_string(ws_pkt.payload, ws_pkt.len);
         }
+        // ESP_LOGI(TAG, "First character: %c", ws_pkt.payload[0]);
     }
     ESP_LOGI(TAG, "Packet type: %d", ws_pkt.type);
     if (ws_pkt.type == HTTPD_WS_TYPE_TEXT &&
@@ -446,3 +495,11 @@ void app_main(void)
     ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
     ESP_LOGI(TAG, "USB initialization DONE");
 }
+
+/*
+Testing:
+ip = "192.168.4.1" //?
+ws = new WebSocket('ws://' + ip + '/ws');
+ws.send("abc");
+
+*/
