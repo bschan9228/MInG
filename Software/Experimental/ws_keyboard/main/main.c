@@ -32,7 +32,7 @@
 #include "class/hid/hid_device.h"
 #include "driver/gpio.h"
 
-#include "jsmn.h"
+#include <cJSON.h>
 
 extern const char root_start[] asm("_binary_root_html_start");
 extern const char root_end[] asm("_binary_root_html_end");
@@ -195,12 +195,12 @@ static void send_character(char c)
     vTaskDelay(pdMS_TO_TICKS(10));
 }
 
-static void app_send_string(uint8_t *data, size_t len)
+static void app_send_string(uint8_t *data, int start, size_t len)
 {
     // Keyboard sends inputted string
     ESP_LOGI(TAG, "Sending Keyboard report");
     // send_character(data[0]);
-    for (int i = 0; i < len; i++)
+    for (int i = start; i < len; i++)
     {
         send_character(data[i]);
     }
@@ -292,33 +292,22 @@ static esp_err_t echo_handler(httpd_req_t *req)
         ESP_LOGI(TAG, "Got packet with message: %s", ws_pkt.payload);
 
         // ----- Sends an HID when a packet a ws packet is recieved ----- //
+        // if (tud_mounted())
+        // {
+        //     app_send_string(ws_pkt.payload, ws_pkt.len);
+        // }
+        // ----- Sends an HID depending on JSON packet ----- //
+        cJSON *web_json = cJSON_ParseWithLength((char *)ws_pkt.payload, ws_pkt.len);
+        cJSON *type = cJSON_GetObjectItemCaseSensitive(web_json, "data");
         if (tud_mounted())
         {
-            app_send_string(ws_pkt.payload, ws_pkt.len);
+            app_send_string((uint8_t *)cJSON_Print(type), 1, strlen(cJSON_Print(type)) - 1);
+            // app_send_string(ws_pkt.payload, ws_pkt.len);
         }
-
-        // --- Sends HID when specified ws packet is sent --- //
-        // int r;
-        // jsmn_parser p;
-        // jsmntok_t t[128]; /* We expect no more than 128 tokens */
-        // jsmn_init(&p);
-        // r = jsmn_parse(&p, (char *)ws_pkt.payload, ws_pkt.len, t,
-        //                sizeof(t) / sizeof(t[0]));
-
-        // for (int i = 0; i < r; i++)
-        // {
-        //     app_send_string(t[i].start, 3);
-        // }
-
+        ESP_LOGI("WebSocket: ", "Characters in packet: %s\n Length: %i", cJSON_Print(type), strlen(cJSON_Print(type)) - 2);
         // ESP_LOGI(TAG, "First character: %c", ws_pkt.payload[0]);
     }
     ESP_LOGI(TAG, "Packet type: %d", ws_pkt.type);
-    // if (ws_pkt.type == HTTPD_WS_TYPE_TEXT &&
-    //     strcmp((char *)ws_pkt.payload, "Trigger async") == 0)
-    // {
-    //     free(buf);
-    //     return trigger_async_send(req->handle, req);
-    // }
 
     // Sends response back to ws
     ret = httpd_ws_send_frame(req, &ws_pkt);

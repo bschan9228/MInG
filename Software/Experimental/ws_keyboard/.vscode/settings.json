@@ -12,7 +12,19 @@
     "files.associations": {
         "hid_device.h": "c",
         "esp_http_server.h": "c",
-        "nvs_flash.h": "c"
+        "nvs_flash.h": "c",
+        "cjson.h": "c",
+        "string": "c",
+        "array": "c",
+        "chrono": "c",
+        "compare": "c",
+        "functional": "c",
+        "ratio": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "string_view": "c",
+        "regex": "c"
     },
     "idf.flashType": "UART",
     "idf.portWin": "COM3"

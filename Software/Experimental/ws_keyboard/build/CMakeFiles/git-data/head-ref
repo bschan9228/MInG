@@ -1,1 +1,6 @@
-afc7d329f77cd5c3b989d238d848df57d2695ec8
+0000000000000000000000000000000000000000 1acf6cd51a9f935ac3370e7cc3f1b4af08372e67 Byron Chan <bschan@UCSD.EDU> 1676446218 -0800	clone: from https://github.com/bschan9228/MInG
+1acf6cd51a9f935ac3370e7cc3f1b4af08372e67 a582f542e5a3f6065f9bb1c0b4c4e567ba781b3d Byron Chan <bschan@UCSD.EDU> 1676446395 -0800	commit: Added some software for access point and http
+a582f542e5a3f6065f9bb1c0b4c4e567ba781b3d 1a0cef9d708d846a833abfd8a7bbbed96a30c716 Byron Chan <bschan@UCSD.EDU> 1676461849 -0800	commit: Added ap + ws
+1a0cef9d708d846a833abfd8a7bbbed96a30c716 4f0dc8c0b2f52040d5a42be2e4913ad4d53c8aef Byron Chan <bschan@UCSD.EDU> 1676517365 -0800	commit: Implemented ap + ws + usb hid backend
+4f0dc8c0b2f52040d5a42be2e4913ad4d53c8aef afc7d329f77cd5c3b989d238d848df57d2695ec8 Byron Chan <bschan@UCSD.EDU> 1676526515 -0800	commit: Added keyboard hid + ws
+afc7d329f77cd5c3b989d238d848df57d2695ec8 ea5635d83effdaa3cbc815aa0060cb216c24c232 Byron Chan <bschan@UCSD.EDU> 1676631565 -0800	commit: ws + keyboard w/simple html ui

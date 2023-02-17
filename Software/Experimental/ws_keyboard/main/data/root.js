@@ -1,14 +1,10 @@
 var ws = null;
 
 function sendMsg() {
-    ws.send(buildMsg());
-}
-
-//FIX  failed: Could not decode a text frame as UTF-8.
-function buildMsg() {
-    message = document.getElementById("message").value;
-    if (message != "") return message;
-
+    ws.send(JSON.stringify({
+        type: "keyboardInput",
+        data: document.getElementById("message").value
+      }));
 }
 
 function isJsonString(str) {
@@ -20,17 +16,19 @@ function isJsonString(str) {
     return true;
 }
 
-
 function beginSocket() {
     ws = new WebSocket('ws://' + document.location.host + '/ws');
 
     ws.onmessage = function(e){
         console.log("Server returned: " + e.data);
-        // console.log(String(e.data).split(","));
-        var scuffedJson = String(e.data).split(",");
+        var json = JSON.parse(e.data);
 
-        if (scuffedJson.pop() == "temperature") {
-            updateTemperature(scuffedJson[0]);
+        // if ("to" in json) {
+        //     console.log("Typed: " + json[json.to]);
+        // }
+        switch (json.type) {
+            case "keyboardInput":
+                console.log("keyboardInput: " + json.data);
         }
     }        
 }
