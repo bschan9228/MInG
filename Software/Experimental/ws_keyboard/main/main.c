@@ -36,16 +36,20 @@
 
 extern const char root_start[] asm("_binary_root_html_start");
 extern const char root_end[] asm("_binary_root_html_end");
-
 extern const char root_js_start[] asm("_binary_root_js_start");
 extern const char root_js_end[] asm("_binary_root_js_end");
+
+extern const char keyboard_start[] asm("_binary_keyboard_html_start");
+extern const char keyboard_end[] asm("_binary_keyboard_html_end");
+extern const char keyboard_js_start[] asm("_binary_keyboard_js_start");
+extern const char keyboard_js_end[] asm("_binary_keyboard_js_end");
 
 #define EXAMPLE_ESP_WIFI_SSID CONFIG_ESP_WIFI_SSID
 #define EXAMPLE_ESP_WIFI_PASS CONFIG_ESP_WIFI_PASSWORD
 #define EXAMPLE_ESP_WIFI_CHANNEL CONFIG_ESP_WIFI_CHANNEL
 #define EXAMPLE_MAX_STA_CONN CONFIG_ESP_MAX_STA_CONN
 
-static const char *TAG = "ws_echo_server";
+static const char *TAG = "console";
 
 //------------------------- USB HID -------------------------//
 
@@ -366,6 +370,46 @@ static const httpd_uri_t root_js = {
      * context to demonstrate it's usage */
     .user_ctx = NULL};
 
+// ------------------------------------- Keyboard html ------------------------------------- //
+static esp_err_t keyboard_get_handler(httpd_req_t *req)
+{
+    const uint32_t keyboard_len = keyboard_end - keyboard_start;
+
+    ESP_LOGI(TAG, "Serve keyboard");
+    httpd_resp_set_type(req, "text/html");
+    httpd_resp_send(req, keyboard_start, keyboard_len);
+
+    return ESP_OK;
+}
+
+static const httpd_uri_t keyboard = {
+    .uri = "/keyboard",
+    .method = HTTP_GET,
+    .handler = keyboard_get_handler,
+    /* Let's pass response string in user
+     * context to demonstrate it's usage */
+    .user_ctx = NULL};
+
+// ------------------------------------- Keyboard javascript ------------------------------------- //
+static esp_err_t keyboard_js_get_handler(httpd_req_t *req)
+{
+    const uint32_t keyboard_js_len = keyboard_js_end - keyboard_js_start;
+
+    ESP_LOGI(TAG, "Serve keyboard");
+    httpd_resp_set_type(req, "text/html");
+    httpd_resp_send(req, keyboard_js_start, keyboard_js_len);
+
+    return ESP_OK;
+}
+
+static const httpd_uri_t keyboard_js = {
+    .uri = "/keyboard.js",
+    .method = HTTP_GET,
+    .handler = keyboard_js_get_handler,
+    /* Let's pass response string in user
+     * context to demonstrate it's usage */
+    .user_ctx = NULL};
+
 // -------------------------------------  ------------------------------------- //
 
 static httpd_handle_t start_webserver(void)
@@ -381,9 +425,12 @@ static httpd_handle_t start_webserver(void)
         ESP_LOGI(TAG, "Registering URI handlers");
         // Registering the ws handler
         httpd_register_uri_handler(server, &ws);
-        // Registering html-related pages
+        // Registering root handlers
         httpd_register_uri_handler(server, &root);
         httpd_register_uri_handler(server, &root_js);
+        // Registering root handlers
+        httpd_register_uri_handler(server, &keyboard);
+        httpd_register_uri_handler(server, &keyboard_js);
         return server;
     }
 
