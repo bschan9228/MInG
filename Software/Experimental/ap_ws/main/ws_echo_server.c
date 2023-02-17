@@ -15,7 +15,7 @@
 #include <sys/param.h>
 #include "esp_netif.h"
 #include "esp_eth.h"
-#include "protocol_examples_common.h"
+// #include "protocol_examples_common.h"
 
 #include <esp_http_server.h>
 
@@ -173,30 +173,6 @@ static void app_send_hid_demo(void)
     }
 }
 
-// Array
-
-static uint8_t char_to_hid(char c)
-{
-    uint8_t char_to_hid[127];
-    char_to_hid['a'] = HID_KEY_A;
-    char_to_hid['b'] = HID_KEY_B;
-    char_to_hid['c'] = HID_KEY_C;
-    char_to_hid['d'] = HID_KEY_D;
-    char_to_hid['e'] = HID_KEY_E;
-
-    char_to_hid['0'] = HID_KEY_0;
-    char_to_hid['1'] = HID_KEY_1;
-    char_to_hid['2'] = HID_KEY_2;
-    char_to_hid['3'] = HID_KEY_3;
-    char_to_hid['4'] = HID_KEY_4;
-    char_to_hid['5'] = HID_KEY_5;
-    char_to_hid['6'] = HID_KEY_6;
-    char_to_hid['7'] = HID_KEY_7;
-    char_to_hid['8'] = HID_KEY_8;
-    char_to_hid['9'] = HID_KEY_9;
-
-    return char_to_hid[c + 0];
-}
 uint8_t const conv_table[128][2] = {HID_ASCII_TO_KEYCODE};
 
 static void send_character(char c)
