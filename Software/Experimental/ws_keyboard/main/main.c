@@ -1,12 +1,3 @@
-/* WebSocket Echo Server Example
-
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
-*/
-
 #include <esp_wifi.h>
 #include <esp_event.h>
 #include <esp_log.h>
@@ -15,7 +6,6 @@
 #include <sys/param.h>
 #include "esp_netif.h"
 #include "esp_eth.h"
-// #include "protocol_examples_common.h"
 
 #include <esp_http_server.h>
 
@@ -43,6 +33,11 @@ extern const char keyboard_start[] asm("_binary_keyboard_html_start");
 extern const char keyboard_end[] asm("_binary_keyboard_html_end");
 extern const char keyboard_js_start[] asm("_binary_keyboard_js_start");
 extern const char keyboard_js_end[] asm("_binary_keyboard_js_end");
+
+extern const char pm_start[] asm("_binary_pm_html_start");
+extern const char pm_end[] asm("_binary_pm_html_end");
+extern const char pm_js_start[] asm("_binary_pm_js_start");
+extern const char pm_js_end[] asm("_binary_pm_js_end");
 
 #define EXAMPLE_ESP_WIFI_SSID CONFIG_ESP_WIFI_SSID
 #define EXAMPLE_ESP_WIFI_PASS CONFIG_ESP_WIFI_PASSWORD
@@ -189,10 +184,13 @@ uint8_t const conv_table[128][2] = {HID_ASCII_TO_KEYCODE};
 
 static void send_character(char c)
 {
-    // uint8_t keycode[6] = {HID_KEY_A};
-    // uint8_t keycode[6] = {char_to_hid(c)};
-    uint8_t keycode[6] = {conv_table[c + 0][1]};
-    tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, keycode);
+    uint8_t keycode[6] = {0};
+    uint8_t modifier = 0;
+    if (conv_table[c + 0][0])
+        modifier = KEYBOARD_MODIFIER_LEFTSHIFT;
+    keycode[0] = conv_table[c + 0][1];
+
+    tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, modifier, keycode);
     // Can speed up by removing null report and adding more keycodes
     vTaskDelay(pdMS_TO_TICKS(10));
     tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
@@ -203,7 +201,6 @@ static void app_send_string(uint8_t *data, int start, size_t len)
 {
     // Keyboard sends inputted string
     ESP_LOGI(TAG, "Sending Keyboard report");
-    // send_character(data[0]);
     for (int i = start; i < len; i++)
     {
         send_character(data[i]);
@@ -295,20 +292,31 @@ static esp_err_t echo_handler(httpd_req_t *req)
         }
         ESP_LOGI(TAG, "Got packet with message: %s", ws_pkt.payload);
 
-        // ----- Sends an HID when a packet a ws packet is recieved ----- //
+        // ---------------------------------------- Sends an HID when a packet a ws packet is recieved ---------------------------------------- //
         // if (tud_mounted())
         // {
         //     app_send_string(ws_pkt.payload, ws_pkt.len);
         // }
         // ----- Sends an HID depending on JSON packet ----- //
         cJSON *web_json = cJSON_ParseWithLength((char *)ws_pkt.payload, ws_pkt.len);
-        cJSON *type = cJSON_GetObjectItemCaseSensitive(web_json, "data");
-        if (tud_mounted())
+        cJSON *app = cJSON_GetObjectItemCaseSensitive(web_json, "app");
+        ESP_LOGI("App payload", "[%s]", cJSON_Print(app));
+
+        // if (strcmp(cJSON_Print(app), "\"pm\"") == 0)
+        if (tud_mounted() && strcmp(cJSON_Print(app), "\"pm\"") == 0)
         {
-            app_send_string((uint8_t *)cJSON_Print(type), 1, strlen(cJSON_Print(type)) - 1);
+            cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
+            ESP_LOGI("Data payload", "[%s]", cJSON_Print(data));
+            app_send_string((uint8_t *)cJSON_Print(data), 1, strlen(cJSON_Print(data)) - 1); // use this
             // app_send_string(ws_pkt.payload, ws_pkt.len);
         }
-        ESP_LOGI("WebSocket: ", "Characters in packet: %s\n Length: %i", cJSON_Print(type), strlen(cJSON_Print(type)) - 2);
+
+        else if (tud_mounted() && (strcmp(cJSON_Print(app), "\"keyboard\"") == 0 || strcmp(cJSON_Print(app), "\"root\"") == 0))
+        {
+            cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
+            app_send_string((uint8_t *)cJSON_Print(data), 1, strlen(cJSON_Print(data)) - 1); // use this
+        }
+        // ESP_LOGI("WebSocket: ", "Characters in packet: %s\n Length: %i", cJSON_Print(type), strlen(cJSON_Print(type)) - 2);
         // ESP_LOGI(TAG, "First character: %c", ws_pkt.payload[0]);
     }
     ESP_LOGI(TAG, "Packet type: %d", ws_pkt.type);
@@ -410,6 +418,46 @@ static const httpd_uri_t keyboard_js = {
      * context to demonstrate it's usage */
     .user_ctx = NULL};
 
+// ------------------------------------- Password manager html ------------------------------------- //
+static esp_err_t pm_get_handler(httpd_req_t *req)
+{
+    const uint32_t pm_len = pm_end - pm_start;
+
+    ESP_LOGI(TAG, "Serve password manager");
+    httpd_resp_set_type(req, "text/html");
+    httpd_resp_send(req, pm_start, pm_len);
+
+    return ESP_OK;
+}
+
+static const httpd_uri_t pm = {
+    .uri = "/pm",
+    .method = HTTP_GET,
+    .handler = pm_get_handler,
+    /* Let's pass response string in user
+     * context to demonstrate it's usage */
+    .user_ctx = NULL};
+
+// ------------------------------------- Password manager javascript ------------------------------------- //
+static esp_err_t pm_js_get_handler(httpd_req_t *req)
+{
+    const uint32_t pm_js_len = pm_js_end - pm_js_start;
+
+    ESP_LOGI(TAG, "Serve Password manager");
+    httpd_resp_set_type(req, "text/html");
+    httpd_resp_send(req, pm_js_start, pm_js_len);
+
+    return ESP_OK;
+}
+
+static const httpd_uri_t pm_js = {
+    .uri = "/pm.js",
+    .method = HTTP_GET,
+    .handler = pm_js_get_handler,
+    /* Let's pass response string in user
+     * context to demonstrate it's usage */
+    .user_ctx = NULL};
+
 // -------------------------------------  ------------------------------------- //
 
 static httpd_handle_t start_webserver(void)
@@ -428,9 +476,13 @@ static httpd_handle_t start_webserver(void)
         // Registering root handlers
         httpd_register_uri_handler(server, &root);
         httpd_register_uri_handler(server, &root_js);
-        // Registering root handlers
+        // Registering keyboard handlers
         httpd_register_uri_handler(server, &keyboard);
         httpd_register_uri_handler(server, &keyboard_js);
+        // Registering password manager
+        httpd_register_uri_handler(server, &pm);
+        httpd_register_uri_handler(server, &pm_js);
+
         return server;
     }
 

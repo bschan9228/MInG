@@ -2,7 +2,7 @@ var ws = null;
 
 function sendMsg() {
     ws.send(JSON.stringify({
-        type: "keyboardInput",
+        app: "root",
         data: document.getElementById("message").value
       }));
 }
