@@ -65,24 +65,37 @@
     </tr>
     <tr>
       <td>Gmail</td>
-      <td>username@user.name</td>
+      <!-- <td>username@user.name</td> -->
+      <td>
+        <a onclick="sendUser(this)">username@user.name</a>
+      </td>
     </tr>
     <tr>
       <td>Canvas</td>
-      <td>Canvas@canvas.user</td>
       <td>
-        <button class="button" onclick="sendUser('Canvas@canvas.user')">
-          U
+        <a onclick="sendUser(this)">Canvas@canvas.user</a>
+      </td>
+      <td>
+        <button class="button" onclick="sendUser(this)">
+          this is the username
         </button>
       </td>
     </tr>
     <tr>
       <td>Piazza</td>
-      <td>Piazza@piazza.user</td>
+      <!-- <td>Piazza@piazza.user</td> -->
+      <td>
+        <a onclick="sendUser(this)">Piazza@piazza.user</a>
+      </td>
     </tr>
     <tr>
       <td>Gradescope</td>
-      <td>Gradescope@user.name</td>
+      <!-- <td>Gradescope@user.name</td> -->
+      <td>
+        <a href="javascript:void(0);" onclick="sendUser(this)"
+          >Gradescope@user.name</a
+        >
+      </td>
     </tr>
   </table>
   <script src="pm.js"></script>

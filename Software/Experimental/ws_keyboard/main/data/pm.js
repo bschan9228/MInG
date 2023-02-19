@@ -2,11 +2,11 @@
 var ws = null;
 
 function sendUser(user) {
-    console.log("sendUser data: " + user);
+    console.log("sendUser data: " + user.innerText);
     ws.send(JSON.stringify({
         app: "pm",
         type: "user",
-        data: user
+        data: user.innerText
       }));
 }
 
