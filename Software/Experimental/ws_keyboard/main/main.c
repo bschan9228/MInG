@@ -192,9 +192,8 @@ static void send_character(char c)
 
     tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, modifier, keycode);
     // Can speed up by removing null report and adding more keycodes
-    vTaskDelay(pdMS_TO_TICKS(10));
-    tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
-    vTaskDelay(pdMS_TO_TICKS(10));
+    // tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
+    // vTaskDelay(pdMS_TO_TICKS(10));
 }
 
 static void app_send_string(uint8_t *data, int start, size_t len)
@@ -203,31 +202,32 @@ static void app_send_string(uint8_t *data, int start, size_t len)
     ESP_LOGI(TAG, "Sending Keyboard report");
     for (int i = start; i < len; i++)
     {
+        if (data[i] == data[i - 1])
+        {
+            tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
+            vTaskDelay(pdMS_TO_TICKS(15));
+        }
+
         send_character(data[i]);
+        vTaskDelay(pdMS_TO_TICKS(20));
     }
+    tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
+    vTaskDelay(pdMS_TO_TICKS(20));
 }
 
 // --------------------------- Websockets --------------------------- //
 /* A simple example that demonstrates using websocket echo server
  */
 
-/*
- * Structure holding server handle
- * and internal socket fd in order
- * to use out of request send
- */
 struct async_resp_arg
 {
     httpd_handle_t hd;
     int fd;
 };
 
-/*
- * async send function, which we put into the httpd work queue
- */
-static void ws_async_send(void *arg)
+static void send_hello(void *arg)
 {
-    static const char *data = "Async data";
+    static const char *data = "{\"app\":\"pm\", \"type\":\"insertUser\", \"data\":\"this is username\"}";
     struct async_resp_arg *resp_arg = arg;
     httpd_handle_t hd = resp_arg->hd;
     int fd = resp_arg->fd;
@@ -246,18 +246,21 @@ static esp_err_t trigger_async_send(httpd_handle_t handle, httpd_req_t *req)
     struct async_resp_arg *resp_arg = malloc(sizeof(struct async_resp_arg));
     resp_arg->hd = req->handle;
     resp_arg->fd = httpd_req_to_sockfd(req);
-    return httpd_queue_work(handle, ws_async_send, resp_arg);
+    return httpd_queue_work(handle, send_hello, resp_arg);
 }
 
 /*
  * This handler echos back the received ws data
  * and triggers an async send if certain message received
  */
-static esp_err_t echo_handler(httpd_req_t *req)
+static esp_err_t ws_handler(httpd_req_t *req)
 {
     if (req->method == HTTP_GET)
     {
         ESP_LOGI(TAG, "Handshake done, the new connection was opened");
+        // vTaskDelay(pdMS_TO_TICKS(1));
+        trigger_async_send(req->handle, req);
+
         return ESP_OK;
     }
     httpd_ws_frame_t ws_pkt;
@@ -303,14 +306,25 @@ static esp_err_t echo_handler(httpd_req_t *req)
         ESP_LOGI("App payload", "[%s]", cJSON_Print(app));
 
         // if (strcmp(cJSON_Print(app), "\"pm\"") == 0)
+
+        // Password management
         if (tud_mounted() && strcmp(cJSON_Print(app), "\"pm\"") == 0)
         {
+            cJSON *type = cJSON_GetObjectItemCaseSensitive(web_json, "type");
             cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
             ESP_LOGI("Data payload", "[%s]", cJSON_Print(data));
-            app_send_string((uint8_t *)cJSON_Print(data), 1, strlen(cJSON_Print(data)) - 1); // use this
-            // app_send_string(ws_pkt.payload, ws_pkt.len);
+            if (strcmp(cJSON_Print(type), "\"user\"") == 0)
+            {
+                app_send_string((uint8_t *)cJSON_Print(data), 1, strlen(cJSON_Print(data)) - 1); // return user
+            }
+            else if (strcmp(cJSON_Print(type), "\"pass\"") == 0)
+            {
+                app_send_string((uint8_t *)"Password for: ", 0, 14); // return pass
+                app_send_string((uint8_t *)cJSON_Print(data), 1, strlen(cJSON_Print(data)) - 1);
+            }
         }
 
+        // Keyboard
         else if (tud_mounted() && (strcmp(cJSON_Print(app), "\"keyboard\"") == 0 || strcmp(cJSON_Print(app), "\"root\"") == 0))
         {
             cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
@@ -334,7 +348,7 @@ static esp_err_t echo_handler(httpd_req_t *req)
 static const httpd_uri_t ws = {
     .uri = "/ws",
     .method = HTTP_GET,
-    .handler = echo_handler,
+    .handler = ws_handler,
     .user_ctx = NULL,
     .is_websocket = true};
 

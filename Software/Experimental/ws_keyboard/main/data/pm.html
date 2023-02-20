@@ -36,20 +36,21 @@
     }
 
     .button {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-      }
-
-      .button2 {background-color: #008CBA;} /* Blue */
+      background-color: #4caf50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
     }
+
+    .button2 {
+      background-color: #008cba;
+    } /* Blue */
   </style>
   <input
     type="text"
@@ -62,10 +63,10 @@
     <tr class="header">
       <th style="width: 60%">Website / Application</th>
       <th style="width: 40%">Username</th>
+      <th style="width: 40%">Password</th>
     </tr>
-    <tr>
+    <!-- <tr>
       <td>Gmail</td>
-      <!-- <td>username@user.name</td> -->
       <td>
         <a onclick="sendUser(this)">username@user.name</a>
       </td>
@@ -83,20 +84,16 @@
     </tr>
     <tr>
       <td>Piazza</td>
-      <!-- <td>Piazza@piazza.user</td> -->
       <td>
         <a onclick="sendUser(this)">Piazza@piazza.user</a>
       </td>
     </tr>
     <tr>
       <td>Gradescope</td>
-      <!-- <td>Gradescope@user.name</td> -->
       <td>
-        <a href="javascript:void(0);" onclick="sendUser(this)"
-          >Gradescope@user.name</a
-        >
+        <a onclick="sendUser(this)">Gradescope@user.name</a>
       </td>
-    </tr>
+    </tr> -->
   </table>
   <script src="pm.js"></script>
 </body>
