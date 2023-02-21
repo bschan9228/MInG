@@ -25,7 +25,8 @@
         "utility": "c",
         "string_view": "c",
         "regex": "c",
-        "complex": "c"
+        "complex": "c",
+        "string.h": "c"
     },
     "idf.flashType": "UART",
     "idf.portWin": "COM3"

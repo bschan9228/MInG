@@ -24,6 +24,10 @@
 
 #include <cJSON.h>
 
+#include <stdio.h>
+#include "esp_vfs.h"
+#include "esp_vfs_fat.h"
+
 extern const char root_start[] asm("_binary_root_html_start");
 extern const char root_end[] asm("_binary_root_html_end");
 extern const char root_js_start[] asm("_binary_root_js_start");
@@ -44,7 +48,39 @@ extern const char pm_js_end[] asm("_binary_pm_js_end");
 #define EXAMPLE_ESP_WIFI_CHANNEL CONFIG_ESP_WIFI_CHANNEL
 #define EXAMPLE_MAX_STA_CONN CONFIG_ESP_MAX_STA_CONN
 
+// WL + FATFS
+static wl_handle_t s_wl_handle = WL_INVALID_HANDLE;
+const char *base_path = "/spiflash";
+
 static const char *TAG = "console";
+
+//------------------------- JSON -------------------------//
+char *create_user(char *application, char *username)
+{
+    char *string = NULL;
+    cJSON *app = NULL;
+    cJSON *type = NULL;
+    cJSON *website = NULL;
+    cJSON *data = NULL;
+
+    cJSON *user = cJSON_CreateObject();
+
+    app = cJSON_CreateString("pm");
+    cJSON_AddItemToObject(user, "app", app);
+
+    type = cJSON_CreateString("insertUser");
+    cJSON_AddItemToObject(user, "type", type);
+
+    website = cJSON_CreateString(application);
+    cJSON_AddItemToObject(user, "website", website);
+
+    data = cJSON_CreateString(username);
+    cJSON_AddItemToObject(user, "data", data);
+
+    string = cJSON_Print(user);
+
+    return string;
+}
 
 //------------------------- USB HID -------------------------//
 
@@ -215,6 +251,72 @@ static void app_send_string(uint8_t *data, int start, size_t len)
     vTaskDelay(pdMS_TO_TICKS(20));
 }
 
+void send_pass_hid(char *website, char *data)
+{
+    char line[128];
+    FILE *f = fopen("/spiflash/cred.txt", "rb");
+    website++;
+    data++;
+    website[strlen(website) - 1] = 0;
+    data[strlen(data) - 1] = 0;
+
+    // app_send_string((uint8_t *)website, 0, strlen(website));
+
+    // app_send_string((uint8_t *)data, 0, strlen(data));
+
+    while (fgets(line, sizeof(line), f) != NULL)
+    {
+        char *pos = strchr(line, ':');
+
+        if (pos)
+        {
+            *pos = '\0';
+        }
+        pos++;
+        pos[strlen(pos) - 1] = 0;
+
+        char *pos2 = strchr(pos, ':');
+        if (pos2)
+        {
+            *pos2 = '\0';
+        }
+        pos2++;
+
+        ESP_LOGI(TAG, "User: '%s'", line);
+        ESP_LOGI(TAG, "Pass: '%s'", pos);
+        // send
+        if (strcmp(line, website) == 0 && strcmp(pos, data) == 0)
+        {
+            fclose(f);
+            app_send_string((uint8_t *)pos2, 0, strlen(pos2));
+            return;
+        }
+    }
+
+    fclose(f);
+    return;
+}
+
+// ----------- FLASH ----------- //
+void add_user_flash(char *website, char *username, char *password)
+{
+    website++;
+    username++;
+    password++;
+    website[strlen(website) - 1] = 0;
+    username[strlen(username) - 1] = 0;
+    password[strlen(password) - 1] = 0;
+
+    // app_send_string((uint8_t *)website, 0, strlen(website));
+    // app_send_string((uint8_t *)username, 0, strlen(username));
+    // app_send_string((uint8_t *)password, 0, strlen(password));
+
+    FILE *f = fopen("/spiflash/cred.txt", "a");
+    fprintf(f, "%s:%s:%s\n", website, username, password);
+    fclose(f);
+    return;
+}
+
 // --------------------------- Websockets --------------------------- //
 /* A simple example that demonstrates using websocket echo server
  */
@@ -225,19 +327,51 @@ struct async_resp_arg
     int fd;
 };
 
-static void send_hello(void *arg)
+static void send_users(void *arg)
 {
-    static const char *data = "{\"app\":\"pm\", \"type\":\"insertUser\", \"data\":\"this is username\"}";
+
     struct async_resp_arg *resp_arg = arg;
     httpd_handle_t hd = resp_arg->hd;
     int fd = resp_arg->fd;
-    httpd_ws_frame_t ws_pkt;
-    memset(&ws_pkt, 0, sizeof(httpd_ws_frame_t));
-    ws_pkt.payload = (uint8_t *)data;
-    ws_pkt.len = strlen(data);
-    ws_pkt.type = HTTPD_WS_TYPE_TEXT;
+    char line[128];
 
-    httpd_ws_send_frame_async(hd, fd, &ws_pkt);
+    FILE *f = fopen("/spiflash/cred.txt", "rb");
+
+    while (fgets(line, sizeof(line), f) != NULL)
+    {
+        // fgets(line, sizeof(line), f);
+        // strip stuff
+        char *pos = strchr(line, ':');
+
+        if (pos)
+        {
+            *pos = '\0';
+        }
+        pos++;
+        pos[strlen(pos) - 1] = 0;
+
+        char *pos2 = strchr(pos, ':');
+        if (pos2)
+        {
+            *pos2 = '\0';
+        }
+        // pos2++;
+
+        ESP_LOGI(TAG, "User: '%s'", line);
+        ESP_LOGI(TAG, "Pass: '%s'", pos);
+        // send
+
+        char *data = create_user(line, pos);
+        httpd_ws_frame_t ws_pkt;
+        memset(&ws_pkt, 0, sizeof(httpd_ws_frame_t));
+        ws_pkt.payload = (uint8_t *)data;
+        ws_pkt.len = strlen(data);
+        ws_pkt.type = HTTPD_WS_TYPE_TEXT;
+
+        httpd_ws_send_frame_async(hd, fd, &ws_pkt);
+    }
+
+    fclose(f);
     free(resp_arg);
 }
 
@@ -246,7 +380,7 @@ static esp_err_t trigger_async_send(httpd_handle_t handle, httpd_req_t *req)
     struct async_resp_arg *resp_arg = malloc(sizeof(struct async_resp_arg));
     resp_arg->hd = req->handle;
     resp_arg->fd = httpd_req_to_sockfd(req);
-    return httpd_queue_work(handle, send_hello, resp_arg);
+    return httpd_queue_work(handle, send_users, resp_arg);
 }
 
 /*
@@ -311,16 +445,33 @@ static esp_err_t ws_handler(httpd_req_t *req)
         if (tud_mounted() && strcmp(cJSON_Print(app), "\"pm\"") == 0)
         {
             cJSON *type = cJSON_GetObjectItemCaseSensitive(web_json, "type");
-            cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
-            ESP_LOGI("Data payload", "[%s]", cJSON_Print(data));
+            // cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
+            // ESP_LOGI("Data payload", "[%s]", cJSON_Print(data));
             if (strcmp(cJSON_Print(type), "\"user\"") == 0)
             {
+                cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
                 app_send_string((uint8_t *)cJSON_Print(data), 1, strlen(cJSON_Print(data)) - 1); // return user
             }
             else if (strcmp(cJSON_Print(type), "\"pass\"") == 0)
             {
-                app_send_string((uint8_t *)"Password for: ", 0, 14); // return pass
-                app_send_string((uint8_t *)cJSON_Print(data), 1, strlen(cJSON_Print(data)) - 1);
+                // app_send_string((uint8_t *)"Password for: ", 0, 14); // return pass
+                // app_send_string((uint8_t *)cJSON_Print(data), 1, strlen(cJSON_Print(data)) - 1);
+                cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
+                cJSON *website = cJSON_GetObjectItemCaseSensitive(web_json, "website");
+                send_pass_hid(cJSON_Print(website), cJSON_Print(data));
+            }
+            else if (strcmp(cJSON_Print(type), "\"addUser\"") == 0)
+            {
+                // TODO: Add flash
+                // app_send_string((uint8_t *)"Adding user!", 0, strlen("Adding user!"));
+                cJSON *website = cJSON_GetObjectItemCaseSensitive(web_json, "website");
+                cJSON *username = cJSON_GetObjectItemCaseSensitive(web_json, "username");
+                cJSON *password = cJSON_GetObjectItemCaseSensitive(web_json, "password");
+
+                // app_send_string((uint8_t *)website, 1, strlen(website) - 1); // return user
+                // app_send_string((uint8_t *)username, 1, strlen(username) - 1); // return user
+                // app_send_string((uint8_t *)password, 1, strlen(password) - 1); // return user
+                add_user_flash(cJSON_Print(website), cJSON_Print(username), cJSON_Print(password));
             }
         }
 
@@ -641,6 +792,18 @@ void app_main(void)
 
     ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
     ESP_LOGI(TAG, "USB initialization DONE");
+
+    // FATFS
+    const esp_vfs_fat_mount_config_t mount_config = {
+        .max_files = 4,
+        .format_if_mount_failed = true,
+        .allocation_unit_size = CONFIG_WL_SECTOR_SIZE};
+    esp_err_t err = esp_vfs_fat_spiflash_mount_rw_wl(base_path, "storage", &mount_config, &s_wl_handle);
+
+    // Write to file
+    // FILE *f = fopen("/spiflash/cred.txt", "wb");
+    // fputs("Gmail:username@user.name:gmail's password\nCanvas:Canvas@canvas.user:canvas pass\nPiazza:Piazza@piazza.user:huge piazza w\nGradescope:Gradescope@user.name:big L\n", f);
+    // fclose(f);
 }
 
 /*

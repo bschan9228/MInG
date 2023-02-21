@@ -25,6 +25,18 @@ function sendPass(user) {
       }));
 }
 
+function addUser(site, user, pass) {
+  addQuery(site, user);
+
+  ws.send(JSON.stringify({
+    app: "pm",
+    website: site,
+    type: "addUser",
+    username: user,
+    password: pass
+  }));
+}
+
 function addQuery(website, username) {
   var table = document.getElementById("myTable");
   var row = table.insertRow(-1);
@@ -37,7 +49,6 @@ function addQuery(website, username) {
   cell2.innerHTML = `<a onclick="sendUser(this)" data-row=${data_row}>${username}</a>`;
   cell3.innerHTML = `<a onclick="sendPass(this)" data-row=${data_row}>Send</a>`;
   data_row += 1;
-
 }
 
 // Sorting
@@ -65,16 +76,12 @@ function search() {
 
 function beginSocket() {
   ws = new WebSocket('ws://' + document.location.host + '/ws');
-  addQuery("Gmail", "username@user.name");
-  addQuery("Canvas", "Canvas@canvas.user");
-  addQuery("Piazza", "Piazza@piazza.user");
-  addQuery("Gradescope", "Gradescope@user.name");
 
   ws.onmessage = function(e){
     console.log("Server returned: " + e.data);
     var json = JSON.parse(e.data);
     if (json.app == "pm" && json.type == "insertUser") {
-      addQuery(json.app, json.data);
+      addQuery(json.website, json.data);
     }
   }        
 }
