@@ -61,16 +61,18 @@ document.body.addEventListener('keydown', function (e) {
     if (!key) {
         return console.warn('No key for', e.keyCode);
     }
-    // console.log("clic" + key);
-    // console.log("code: " + String.fromCharCode(e.keyCode || e.which));
-    console.log("code: " + e.keyCode || e.which);
-    sendMsg(e.keyCode || e.which);
     key.setAttribute('data-pressed', 'on');
 });
 
 document.body.addEventListener('keyup', function (e) {
     var key = getKey(e);
     key && key.removeAttribute('data-pressed');
+});
+
+document.body.addEventListener('keypress', function (e) {
+    var key = getKey(e);
+    console.log("code: " + (e.keyCode || e.which) + " " + String.fromCharCode(e.keyCode || e.which));
+    sendMsg(String.fromCharCode(e.keyCode || e.which));
 });
 
 // Not sure how to make touch work
