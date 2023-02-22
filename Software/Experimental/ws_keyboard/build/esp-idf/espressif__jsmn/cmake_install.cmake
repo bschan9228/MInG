@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/managed_components/espressif__jsmn
+# Install script for directory: C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/managed_components/espressif__jsmn
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

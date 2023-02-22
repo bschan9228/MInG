@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
     "project_path":       "C:/Users/bscha/esp/esp-idf/components/bootloader/subproject",
-    "build_dir":          "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader",
-    "config_file":        "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/sdkconfig",
+    "build_dir":          "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader",
+    "config_file":        "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/sdkconfig",
     "config_defaults":    "",
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",

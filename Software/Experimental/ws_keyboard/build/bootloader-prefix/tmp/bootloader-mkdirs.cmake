@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "C:/Users/bscha/esp/esp-idf/components/bootloader/subproject"
-  "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader"
-  "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix"
-  "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/tmp"
-  "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src"
-  "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader"
+  "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix"
+  "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/tmp"
+  "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src"
+  "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()
