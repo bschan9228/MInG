@@ -2238,13 +2238,13 @@ input, select, textarea {
 			
 		btn-primary,
 		.btn-primary {
-					background-color: #FDFDFD;
+					background-color: #ffffff;
 					color: #252525;
 					font-size: 14px;
 					font-weight: bold;
 					border: none;
 					border-radius: 4px;
-					padding: 5px 24px;
+					padding: 5px 16px;
 					text-transform: uppercase;
 					letter-spacing: 1px;
 					cursor: pointer;
@@ -2255,6 +2255,36 @@ input, select, textarea {
 				  
 		.btn-primary:hover {
 					background-color: #FDFDFD;
+				  }
+		dropdown,
+		.dropdown {
+					position: relative;
+					display: inline-block;
+				  }
+				  
+		.dropdown-content {
+					display: none;
+					position: absolute;
+					background-color: #FDFDFD;
+					min-width: 100px;
+					box-shadow: 0px 8px 16px 0px rgba(187, 196, 14, 0.2);
+					z-index: 1;
+				  }
+				  
+		.dropdown-content a {
+					color: #252525;
+					padding: 8px 16px;
+					text-decoration: none;
+					display: block;
+				  }
+				  
+		.dropdown-content a:hover {
+					background-color: #252525;
+					color: #FDFDFD;
+				  }
+				  
+		.dropdown:hover .dropdown-content {
+					display: block;
 				  }
 		
 /* Form */
