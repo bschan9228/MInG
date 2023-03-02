@@ -4756,6 +4756,8 @@ input, select, textarea {
 		opacity: 0;
 	}
 
+
+
 	.spotlight.onscroll-image-fade-up .image {
 		-moz-transition: opacity 0.75s ease-in-out, -moz-transform 0.75s ease-in-out;
 		-webkit-transition: opacity 0.75s ease-in-out, -webkit-transform 0.75s ease-in-out;
