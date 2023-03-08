@@ -119,4 +119,5 @@ function deleteInfo(line) {
   console.log(user);
 
   deleteUser(user, website, "");
+  //location.reload();
 }
