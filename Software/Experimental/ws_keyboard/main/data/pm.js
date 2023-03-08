@@ -107,6 +107,8 @@ function saveForm() {
   var test2 = document.getElementById("myForm").elements.item(1).value;
   var test3 = document.getElementById("myForm").elements.item(2).value;
   addUser(test1, test2, test3);
+
+  document.getElementById("myForm").reset();
 }
 
 function deleteInfo(line) {
