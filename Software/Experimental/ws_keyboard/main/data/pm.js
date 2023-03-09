@@ -103,9 +103,9 @@ function beginSocket() {
 
 
 function saveForm() {
-  var test1 = document.getElementById("myForm").elements.item(0).value;
-  var test2 = document.getElementById("myForm").elements.item(1).value;
-  var test3 = document.getElementById("myForm").elements.item(2).value;
+  var test1 = document.getElementById("website").value;
+  var test2 = document.getElementById("username").value;
+  var test3 = document.getElementById("pwd").value;
   addUser(test1, test2, test3);
 
   document.getElementById("myForm").reset();
