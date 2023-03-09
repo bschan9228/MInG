@@ -19,7 +19,7 @@
 
 #include <stdlib.h>
 #include "tinyusb.h"
-#include "class/hid/hid_device.h"
+#include "class/hid/hid_device.h"`
 #include "driver/gpio.h"
 
 #include <cJSON.h>
@@ -255,8 +255,8 @@ void send_pass_hid(char *website, char *data)
 {
     char line[128];
     FILE *f = fopen("/spiflash/cred.txt", "rb");
-    website++;
-    data++;
+    website++;                                      // used to get past quotes
+    data++;                                         // ^
     website[strlen(website) - 1] = 0;
     data[strlen(data) - 1] = 0;
 
@@ -314,6 +314,59 @@ void add_user_flash(char *website, char *username, char *password)
     FILE *f = fopen("/spiflash/cred.txt", "a");
     fprintf(f, "%s:%s:%s\n", website, username, password);
     fclose(f);
+    return;
+}
+
+void delete_user_flash(char *website, char *data, char *password)
+{
+    char line[128];
+    website++;                                      // used to get past quotes
+    data++;                                         // ^
+    website[strlen(website) - 1] = 0;
+    data[strlen(data) - 1] = 0;
+
+    FILE *f = fopen("/spiflash/cred.txt", "rb");
+    FILE *temp = fopen("/spiflash/temp.txt", "wb");
+
+    while (fgets(line, sizeof(line), f) != NULL)
+    {
+        char *pos = strchr(line, ':');
+
+        if (pos)
+        {
+            *pos = '\0';
+        }
+        pos++;
+        pos[strlen(pos) - 1] = 0;
+
+        char *pos2 = strchr(pos, ':');
+        if (pos2)
+        {
+            *pos2 = '\0';
+        }
+        pos2++;
+
+        if (strcmp(line, website) == 0 && strcmp(pos, data) == 0)
+        {
+            continue;
+        }
+        //fputs(line, temp);
+        fprintf(temp, "%s:%s:%s\n", line, pos, pos2);
+    }
+
+    fclose(f);
+    fclose(temp);
+
+    // rewrite to cred.txt
+    FILE *f2 = fopen("/spiflash/cred.txt", "w");
+    FILE *temp2 = fopen("/spiflash/temp.txt", "r");
+
+    while ((fgets(line, sizeof(line), temp2)) != NULL) {
+        fputs(line, f2);
+    }
+    fclose(f2);
+    fclose(temp2);
+
     return;
 }
 
@@ -462,7 +515,6 @@ static esp_err_t ws_handler(httpd_req_t *req)
             }
             else if (strcmp(cJSON_Print(type), "\"addUser\"") == 0)
             {
-                // TODO: Add flash
                 // app_send_string((uint8_t *)"Adding user!", 0, strlen("Adding user!"));
                 cJSON *website = cJSON_GetObjectItemCaseSensitive(web_json, "website");
                 cJSON *username = cJSON_GetObjectItemCaseSensitive(web_json, "username");
@@ -472,6 +524,17 @@ static esp_err_t ws_handler(httpd_req_t *req)
                 // app_send_string((uint8_t *)username, 1, strlen(username) - 1); // return user
                 // app_send_string((uint8_t *)password, 1, strlen(password) - 1); // return user
                 add_user_flash(cJSON_Print(website), cJSON_Print(username), cJSON_Print(password));
+            }
+            else if (strcmp(cJSON_Print(type), "\"deleteUser\"") == 0)
+            {
+                cJSON *website = cJSON_GetObjectItemCaseSensitive(web_json, "website");
+                cJSON *username = cJSON_GetObjectItemCaseSensitive(web_json, "username");
+                cJSON *password = cJSON_GetObjectItemCaseSensitive(web_json, "password");
+
+                // app_send_string((uint8_t *)website, 1, strlen(website) - 1); // return user
+                // app_send_string((uint8_t *)username, 1, strlen(username) - 1); // return user
+                // app_send_string((uint8_t *)password, 1, strlen(password) - 1); // return user
+                delete_user_flash(cJSON_Print(website), cJSON_Print(username), cJSON_Print(password));
             }
         }
 
@@ -801,9 +864,9 @@ void app_main(void)
     esp_err_t err = esp_vfs_fat_spiflash_mount_rw_wl(base_path, "storage", &mount_config, &s_wl_handle);
 
     // Write to file
-    // FILE *f = fopen("/spiflash/cred.txt", "wb");
-    // fputs("Gmail:username@user.name:gmail's password\nCanvas:Canvas@canvas.user:canvas pass\nPiazza:Piazza@piazza.user:huge piazza w\nGradescope:Gradescope@user.name:big L\n", f);
-    // fclose(f);
+    FILE *f = fopen("/spiflash/cred.txt", "wb");
+    fputs("Gmail:username@user.name:gmail's password\nCanvas:Canvas@canvas.user:canvas pass\nPiazza:Piazza@piazza.user:huge piazza w\nGradescope:Gradescope@user.name:big L\n", f);
+    fclose(f);
 }
 
 /*

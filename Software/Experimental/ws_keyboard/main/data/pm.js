@@ -37,17 +37,32 @@ function addUser(site, user, pass) {
   }));
 }
 
+function deleteUser(site, user, pass) {
+
+  ws.send(JSON.stringify({
+    app: "pm",
+    website: site,
+    type: "deleteUser",
+    username: user,
+    password: pass
+  }));
+}
+
+
+
 function addQuery(website, username) {
   var table = document.getElementById("myTable");
   var row = table.insertRow(-1);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
   var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
 
 // Add some text to the new cells:
   cell1.innerHTML = `${website}`;
   cell2.innerHTML = `<a onclick="sendUser(this)" data-row=${data_row}>${username}</a>`;
-  cell3.innerHTML = `<a onclick="sendPass(this)" data-row=${data_row}>Send</a>`;
+  cell3.innerHTML = `<a onclick="sendPass(this)" data-row=${data_row}>******</a>`;
+  cell4.innerHTML = `<button class="deletebtn" onclick="deleteInfo(${data_row})" data-row=${data_row}>delete</button>`
   data_row += 1;
 }
 
@@ -84,4 +99,27 @@ function beginSocket() {
       addQuery(json.website, json.data);
     }
   }        
+}
+
+
+function saveForm() {
+  var test1 = document.getElementById("website").value;
+  var test2 = document.getElementById("username").value;
+  var test3 = document.getElementById("pwd").value;
+  addUser(test1, test2, test3);
+
+  document.getElementById("myForm").reset();
+}
+
+function deleteInfo(line) {
+  if(!confirm("Are you sure you want to delete these credentials?")) {
+    return false;
+  }
+  //console.log(line);
+  var user = table.rows[line].cells[0].innerText;
+  var website = table.rows[line].cells[1].innerText;
+  console.log(user);
+
+  deleteUser(user, website, "");
+  //location.reload();
 }

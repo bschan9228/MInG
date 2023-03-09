@@ -1,4 +1,11 @@
+<!DOCTYPE html>
+
+<head>
+  <h1>Password Management</h1>
+  <p>Click on the row to type out your password</p>
+</head>
 <body onload="beginSocket()">
+
   <style>
     #myInput {
       background-image: url("/css/searchicon.png"); /* Add a search icon to input */
@@ -51,7 +58,174 @@
     .button2 {
       background-color: #008cba;
     } /* Blue */
+
+    .button-3 {
+      appearance: none;
+      background-color: #2ea44f;
+      border: 1px solid rgba(27, 31, 35, .15);
+      border-radius: 6px;
+      box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      padding: 6px 16px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: middle;
+      white-space: nowrap;
+      margin: 20px;
+    }
+    
+    .button-3:focus:not(:focus-visible):not(.focus-visible) {
+      box-shadow: none;
+      outline: none;
+    }
+    
+    .button-3:hover {
+      background-color: #2c974b;
+    }
+    
+    .button-3:focus {
+      box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+      outline: none;
+    }
+    
+    .button-3:disabled {
+      background-color: #94d3a2;
+      border-color: rgba(27, 31, 35, .1);
+      color: rgba(255, 255, 255, .8);
+      cursor: default;
+    }
+    
+    .button-3:active {
+      background-color: #298e46;
+      box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+    }
+
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    .open-button {
+      background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      width: 300px;
+      margin: 0 auto;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text], .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom:10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover, .open-button:hover {
+      opacity: 1;
+    }
+
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box;}
+
+    .form-inline {  
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .form-inline label {
+      margin: 5px 10px 5px 0;
+    }
+
+    .form-inline input {
+      vertical-align: middle;
+      margin: 5px 10px 5px 0;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+
+    .form-inline button {
+      padding: 10px 20px;
+      background-color: dodgerblue;
+      border: 1px solid #ddd;
+      color: white;
+      cursor: pointer;
+    }
+
+    .form-inline button:hover {
+      background-color: royalblue;
+    }
+
+    @media (max-width: 800px) {
+      .form-inline input {
+        margin: 10px 0;
+      }
+      
+      .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
   </style>
+
+
+  <!-- Actual html here -->
+
   <input
     type="text"
     id="myInput"
@@ -59,11 +233,22 @@
     placeholder="Search for accounts"
   />
 
+  <div class="form-inline" id="myForm">
+    <label for="website">Website:</label>
+    <input type="website" id="website" placeholder="Enter website" name="website">
+    <label for="username">Username:</label>
+    <input type="username" id="username" placeholder="Enter username" name="username">
+    <label for="pwd">Password:</label>
+    <input type="password" id="pwd" placeholder="Enter password" name="pswd">
+    <button type="submit" onclick="saveForm()">Add</button>
+  </div>
+
   <table id="myTable">
     <tr class="header">
-      <th style="width: 60%">Website / Application</th>
+      <th style="width: 40%">Websites</th>
       <th style="width: 40%">Username</th>
       <th style="width: 40%">Password</th>
+      <th style="width: 40%">Delete</th>
     </tr>
   </table>
   <script src="pm.js"></script>
