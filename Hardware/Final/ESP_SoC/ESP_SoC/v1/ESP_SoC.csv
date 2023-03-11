@@ -1,0 +1,21 @@
+Comment,Designator,Footprint,LCSC Part #,Quantity,
+2450AT18A100E ,AE1,ANTC3216X140N,C89334,1,=E2*F1
+"1u Unpolarized capacitor, small symbol","C1,C7,C11,C12,C13,C16",C_0402_1005Metric,C52923,6,=E3*F1
+"0.1u Unpolarized capacitor, small symbol","C2,C5,C6,C9,C10",C_0402_1005Metric,C307331,5,=E4*F1
+"3.3p Unpolarized capacitor, small symbol","C3,C4",C_0402_1005Metric,C1565,2,=E5*F1
+"10u Unpolarized capacitor, small symbol",C8,C_0603_1608Metric,C19702,1,=E6*F1
+"12p Unpolarized capacitor, small symbol","C14,C15",C_0402_1005Metric,C1547,2,=E7*F1
+NSR0320 Schottky diode,"D1,D2,D3",D_SOD-323F,C48192,3,=E8*F1
+USB_A USB Type A connector,J1,USB_A_CNCTech_1001-011-01101_Horizontal,C283548,1,=E9*F1
+"Conn_01x01 Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)","J2,J3",SolderWirePad_1x01_SMD_1x2mm,,2,=E10*F1
+"2.2nH Inductor, small symbol","L1,L2",L_0402_1005Metric,C91240,2,=E11*F1
+USB_C_Plug USB Type-C Plug connector,P1,USB_C_Plug_Molex_105444,C134082,1,=E12*F1
+"0 Resistor, small symbol","R1,R3,R4",R_0402_1005Metric,C17168,3,=E13*F1
+10k Resistor,R2,R_0402_1005Metric,C25744,1,=E14*F1
+"5k1 Resistor, small symbol",R5,R_0402_1005Metric,C25905,1,=E15*F1
+"DNP Resistor, small symbol","R6,R7",R_0402_1005Metric,,2,=E16*F1
+RESET Single Pole Single Throw (SPST) switch,SW1,SW_SPST_PTS810,C221897,1,=E17*F1
+BOOT Single Pole Single Throw (SPST) switch,SW2,SW_SPST_PTS810,C221897,1,=E18*F1
+"AP2112K-3.3 600mA low dropout linear regulator, with enable pin, 3.8V-6V input voltage range, 3.3V fixed positive output, SOT-23-5",U1,SOT-23-5,C51118,1,=E19*F1
+ESP32-S3FN8 ,U2,QFN40P700X700X90-57N,,1,=E20*F1
+"40MHz Four pin crystal, GND on pins 2 and 4",Y1,Crystal_SMD_2016-4Pin_2.0x1.6mm,C255898,1,=E21*F1

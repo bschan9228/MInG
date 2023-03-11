@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name "ESP32-S3FN8")(type "KiCad")(uri "C:/Users/bscha/Desktop/MInG/Hardware/Prototype/ESP_SoC/lib/ESP32-S3FN8/ESP32-S3FN8.kicad_sym")(options "")(descr ""))
+  (lib (name "2450AT18A100E")(type "KiCad")(uri "C:/Users/bscha/Desktop/MInG/Hardware/Prototype/ESP_SoC/lib/2450AT18A100E/2450AT18A100E.kicad_sym")(options "")(descr ""))
+  (lib (name "WS2812-2020")(type "KiCad")(uri "C:/Users/bscha/Desktop/MInG/Hardware/Final/ESP_SoC/lib/WS2812-2020/WS2812-2020.kicad_sym")(options "")(descr ""))
+)

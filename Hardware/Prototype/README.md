@@ -1,2 +1,2 @@
 # Prototype
-Prototype for MInG
+Prototype devices for MInG

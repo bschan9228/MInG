@@ -1,2 +1,2 @@
 # Final
-Final for MInG
+Final device for MInG 
