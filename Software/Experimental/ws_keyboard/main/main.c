@@ -28,6 +28,12 @@
 #include "esp_vfs.h"
 #include "esp_vfs_fat.h"
 
+#include <inttypes.h>
+#include "esp_system.h"
+#include "nvs_flash.h"
+#include "nvs.h"
+
+
 extern const char root_start[] asm("_binary_root_html_start");
 extern const char root_end[] asm("_binary_root_html_end");
 extern const char root_js_start[] asm("_binary_root_js_start");
@@ -370,6 +376,24 @@ void delete_user_flash(char *website, char *data, char *password)
     return;
 }
 
+// Configure SSID
+void config_SSID(char *data)
+{
+    data++;
+    website[strlen(data) - 1] = 0;
+
+    
+    return;
+}
+
+void config_password(char *data)
+{
+    data++;
+    website[strlen(data) - 1] = 0;
+
+    return;
+}
+
 // --------------------------- Websockets --------------------------- //
 /* A simple example that demonstrates using websocket echo server
  */
@@ -492,8 +516,6 @@ static esp_err_t ws_handler(httpd_req_t *req)
         cJSON *app = cJSON_GetObjectItemCaseSensitive(web_json, "app");
         ESP_LOGI("App payload", "[%s]", cJSON_Print(app));
 
-        // if (strcmp(cJSON_Print(app), "\"pm\"") == 0)
-
         // Password management
         if (tud_mounted() && strcmp(cJSON_Print(app), "\"pm\"") == 0)
         {
@@ -546,6 +568,18 @@ static esp_err_t ws_handler(httpd_req_t *req)
         }
         // ESP_LOGI("WebSocket: ", "Characters in packet: %s\n Length: %i", cJSON_Print(type), strlen(cJSON_Print(type)) - 2);
         // ESP_LOGI(TAG, "First character: %c", ws_pkt.payload[0]);
+
+        // SSID configure
+        else if (tud_mounted() && strcmp(cJSON_Print(app), "\"root\"") == 0 && strcmp(cJSON_Print(type), "\"s\"") == 0) {
+            cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
+            config_SSID(cJSON_Print(data));
+        }
+        // Password configure
+        else if (tud_mounted() && strcmp(cJSON_Print(app), "\"root\"") == 0 && strcmp(cJSON_Print(type), "\"p\"") == 0) {
+            cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
+            config_password(cJSON_Print(data));
+        }
+
     }
     ESP_LOGI(TAG, "Packet type: %d", ws_pkt.type);
 
@@ -864,9 +898,9 @@ void app_main(void)
     esp_err_t err = esp_vfs_fat_spiflash_mount_rw_wl(base_path, "storage", &mount_config, &s_wl_handle);
 
     // Write to file
-    FILE *f = fopen("/spiflash/cred.txt", "wb");
-    fputs("Gmail:username@user.name:gmail's password\nCanvas:Canvas@canvas.user:canvas pass\nPiazza:Piazza@piazza.user:huge piazza w\nGradescope:Gradescope@user.name:big L\n", f);
-    fclose(f);
+    // FILE *f = fopen("/spiflash/cred.txt", "wb");
+    // fputs("Gmail:username@user.name:gmail's password\nCanvas:Canvas@canvas.user:canvas pass\nPiazza:Piazza@piazza.user:huge piazza w\nGradescope:Gradescope@user.name:big L\n", f);
+    // fclose(f);
 }
 
 /*

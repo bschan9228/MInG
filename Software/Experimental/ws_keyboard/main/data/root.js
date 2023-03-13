@@ -32,3 +32,19 @@ function beginSocket() {
         }
     }        
 }
+
+function sendSSID() {
+    ws.send(JSON.stringify({
+        app: "root",
+        type: "s",
+        data: document.getElementById("SSID").value
+      }));
+}
+
+function sendPassword() {
+    ws.send(JSON.stringify({
+        app: "root",
+        type: "p",
+        data: document.getElementById("Password").value
+      }));
+}
