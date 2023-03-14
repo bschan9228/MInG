@@ -1,5 +1,7 @@
 # Final Software
 Finalized software for MInG.
+Default access point username: MInG 
+Default access point password: mypassword 
 
 ![image](https://user-images.githubusercontent.com/72418944/224905057-38abe480-b193-4b59-a3d4-ed91a5137d95.png)
 
