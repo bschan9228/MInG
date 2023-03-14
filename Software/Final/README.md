@@ -28,7 +28,7 @@ Default access point password: mypassword
 
 
 ### Keyboard
-- Type any character into target computer
+- Type any character into target device. Worked on all tested USB-A and USB-C devices that supports keyboards
 - Only characters and special characters have been implemented (no delete, tab, F-keys, etc.)
 - Only typing on a physical keyboard has been implemented. Tapping on the virtual keyboard will not work. 
 - 192.168.4.1/keyboard
