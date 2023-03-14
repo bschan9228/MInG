@@ -281,7 +281,7 @@
     "ESP_WIFI_SLP_BEACON_LOST_OPT": false,
     "ESP_WIFI_SLP_IRAM_OPT": false,
     "ESP_WIFI_SOFTAP_SUPPORT": true,
-    "ESP_WIFI_SSID": "myssid",
+    "ESP_WIFI_SSID": "MInG",
     "ESP_WIFI_STA_DISCONNECTED_PM_ENABLE": false,
     "ETH_ENABLED": true,
     "ETH_SPI_ETHERNET_DM9051": false,

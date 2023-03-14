@@ -19,7 +19,7 @@
 
 #include <stdlib.h>
 #include "tinyusb.h"
-#include "class/hid/hid_device.h"`
+#include "class/hid/hid_device.h"
 #include "driver/gpio.h"
 
 #include <cJSON.h>
@@ -382,6 +382,15 @@ void config_SSID(char *data)
     data++;
     data[strlen(data) - 1] = 0;
 
+    if (strlen(data) > 0 && strlen(data) < 32)
+    {
+        nvs_handle_t my_handle;
+        esp_err_t err = nvs_open("storage", NVS_READWRITE, &my_handle);
+        nvs_set_str(my_handle, "ssid", data);
+        nvs_commit(my_handle);
+        nvs_close(my_handle);
+    }
+
     return;
 }
 
@@ -389,6 +398,15 @@ void config_password(char *data)
 {
     data++;
     data[strlen(data) - 1] = 0;
+
+    if (strlen(data) >= 8 && strlen(data) < 64)
+    {
+        nvs_handle_t my_handle;
+        esp_err_t err = nvs_open("storage", NVS_READWRITE, &my_handle);
+        nvs_set_str(my_handle, "password", data);
+        nvs_commit(my_handle);
+        nvs_close(my_handle);
+    }
 
     return;
 }
@@ -568,7 +586,7 @@ static esp_err_t ws_handler(httpd_req_t *req)
         // ESP_LOGI("WebSocket: ", "Characters in packet: %s\n Length: %i", cJSON_Print(type), strlen(cJSON_Print(type)) - 2);
         // ESP_LOGI(TAG, "First character: %c", ws_pkt.payload[0]);
 
-        else if (tud_mounted() && strcmp(cJSON_Print(app), "\"root\"") == 0)
+        else if (tud_mounted() && strcmp(cJSON_Print(app), "\"config\"") == 0)
         {
             cJSON *type = cJSON_GetObjectItemCaseSensitive(web_json, "type");
             cJSON *data = cJSON_GetObjectItemCaseSensitive(web_json, "data");
@@ -828,7 +846,7 @@ esp_err_t wifi_init_softap(void)
     wifi_config_t wifi_config = {
         .ap = {
             .ssid = EXAMPLE_ESP_WIFI_SSID,
-            .ssid_len = strlen(EXAMPLE_ESP_WIFI_SSID),
+            .ssid_len = 32,
             .channel = EXAMPLE_ESP_WIFI_CHANNEL,
             .password = EXAMPLE_ESP_WIFI_PASS,
             .max_connection = EXAMPLE_MAX_STA_CONN,
@@ -844,16 +862,28 @@ esp_err_t wifi_init_softap(void)
     }
 
     // Change ssid/password if set
-    // size_t required_size;
-    // nvs_get_str(my_handle, "ssid", NULL, &required_size);
-    // char *ssid = malloc(required_size);
-    // err_ssid = nvs_get_str(my_handle, "ssid", ssid, &required_size);
-    // if (err == ESP_OK)
-    // {
-    //     strncpy((char *)wifi_config.sta.ssid, (char *)ssid, 32);
-    // }
+    nvs_handle_t my_handle;
+    esp_err_t err = nvs_open("storage", NVS_READWRITE, &my_handle);
 
-    // strncpy((char *)wifi_config.sta.password, (char *)"custompass", 32);
+    size_t required_size = 32;
+    // nvs_get_str(my_handle, "ssid", NULL, &required_size);
+    char *ssid = malloc(required_size);
+    err = nvs_get_str(my_handle, "ssid", ssid, &required_size);
+    if (err == ESP_OK)
+    {
+        strncpy((char *)wifi_config.sta.ssid, (char *)ssid, 32);
+    }
+
+    // nvs_get_str(my_handle, "password", NULL, &required_size);
+    required_size = 64;
+    char *password = malloc(required_size);
+    err = nvs_get_str(my_handle, "password", password, &required_size);
+    if (err == ESP_OK)
+    {
+        strncpy((char *)wifi_config.sta.password, (char *)password, 64);
+    }
+
+    nvs_close(my_handle);
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, &wifi_config));
@@ -913,6 +943,7 @@ void app_main(void)
         .format_if_mount_failed = true,
         .allocation_unit_size = CONFIG_WL_SECTOR_SIZE};
     esp_err_t err = esp_vfs_fat_spiflash_mount_rw_wl(base_path, "storage", &mount_config, &s_wl_handle);
+    // err = esp_vfs_fat_spiflash_mount_rw_wl(base_path, "storage", &mount_config, &s_wl_handle);
 
     // Write to file
     // FILE *f = fopen("/spiflash/cred.txt", "wb");

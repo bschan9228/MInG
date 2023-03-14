@@ -29,5 +29,5 @@
         "string.h": "c"
     },
     "idf.flashType": "UART",
-    "idf.portWin": "COM20"
+    "idf.portWin": "COM17"
 }

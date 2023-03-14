@@ -8,14 +8,17 @@
   </head>
   <body onload="beginSocket()">
     <h1>Testing/Config</h1>
+    <div>These values will be set on the next boot.</div>
+    <br />
     <div>SSID</div>
     <input type="text" id="SSID" />
-    <input type="button" value="Set" onclick="sendMsg()" />
+    <input type="button" value="Set" onclick="sendSSID()" />
     <br />
     <br />
-    <div>Password</div>
+    <div>Password (Min length 8. Otherwise, not set)</div>
+    <div>If you forget the password, you may need to reflash the device.</div>
     <input type="text" id="Password" />
-    <input type="button" value="Set" onclick="sendMsg()" />
+    <input type="button" value="Set" onclick="sendPassword()" />
 
     <h2>USB HID</h2>
     <input type="text" id="message" />

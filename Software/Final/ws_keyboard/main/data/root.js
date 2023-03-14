@@ -34,16 +34,18 @@ function beginSocket() {
 }
 
 function sendSSID() {
+    console.log("SSID: " + document.getElementById("SSID").value);
     ws.send(JSON.stringify({
-        app: "root",
+        app: "config",
         type: "s",
         data: document.getElementById("SSID").value
       }));
 }
 
 function sendPassword() {
+    console.log("Password: " + document.getElementById("SSID").value);
     ws.send(JSON.stringify({
-        app: "root",
+        app: "config",
         type: "p",
         data: document.getElementById("Password").value
       }));
