@@ -13,7 +13,8 @@ Default access point password: mypassword
 ### Password Management System
 - Stores all credentials in flash memory
 - Search bar to look up credentials
-- Add new credentials through text box
+- Add new credentials through form
+- Delete button to remove credentials
 - 192.168.4.1/pm
 
 <kbd><img src="https://user-images.githubusercontent.com/72418944/224902820-93ac0810-52f3-4b2a-9637-1af7684908b8.png" /></kbd>
@@ -21,6 +22,7 @@ Default access point password: mypassword
 ### Config
 - Change SSID's name
 - Change SSID's password
+  - Please use reasonable SSID name/password, otherwise device may not work
 - Send any HID text wirelessly
 - 192.168.4.1
 
