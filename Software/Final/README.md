@@ -1,5 +1,5 @@
 # Final Software
-Finalized software for MInG.
+Finalized software for MInG. Built with ESP-IDF.
 
 Default access point username: MInG 
 
@@ -20,8 +20,8 @@ Default access point password: mypassword
 <kbd><img src="https://user-images.githubusercontent.com/72418944/224902820-93ac0810-52f3-4b2a-9637-1af7684908b8.png" /></kbd>
 
 ### Config
-- Change SSID's name
-- Change SSID's password
+- Change SSID's name and password
+  - Stored in NVS
   - Please use reasonable SSID name/password, otherwise device may not work
 - Send any HID text wirelessly
 - 192.168.4.1
