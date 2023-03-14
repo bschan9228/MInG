@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/main/data/root.js
+/* * Data converted from C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/main/data/root.js
  */
 .data
 .section .rodata.embedded

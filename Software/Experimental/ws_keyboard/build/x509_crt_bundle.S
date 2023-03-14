@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/bscha/Desktop/Files/projs/MInG/Software/Experimental/ws_keyboard/main
+# Install script for directory: C:/Users/bscha/Desktop/MInG/Software/Experimental/ws_keyboard/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

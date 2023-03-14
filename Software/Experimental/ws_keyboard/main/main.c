@@ -255,8 +255,8 @@ void send_pass_hid(char *website, char *data)
 {
     char line[128];
     FILE *f = fopen("/spiflash/cred.txt", "rb");
-    website++;                                      // used to get past quotes
-    data++;                                         // ^
+    website++; // used to get past quotes
+    data++;    // ^
     website[strlen(website) - 1] = 0;
     data[strlen(data) - 1] = 0;
 
@@ -320,8 +320,8 @@ void add_user_flash(char *website, char *username, char *password)
 void delete_user_flash(char *website, char *data, char *password)
 {
     char line[128];
-    website++;                                      // used to get past quotes
-    data++;                                         // ^
+    website++; // used to get past quotes
+    data++;    // ^
     website[strlen(website) - 1] = 0;
     data[strlen(data) - 1] = 0;
 
@@ -350,7 +350,7 @@ void delete_user_flash(char *website, char *data, char *password)
         {
             continue;
         }
-        //fputs(line, temp);
+        // fputs(line, temp);
         fprintf(temp, "%s:%s:%s\n", line, pos, pos2);
     }
 
@@ -361,7 +361,8 @@ void delete_user_flash(char *website, char *data, char *password)
     FILE *f2 = fopen("/spiflash/cred.txt", "w");
     FILE *temp2 = fopen("/spiflash/temp.txt", "r");
 
-    while ((fgets(line, sizeof(line), temp2)) != NULL) {
+    while ((fgets(line, sizeof(line), temp2)) != NULL)
+    {
         fputs(line, f2);
     }
     fclose(f2);
@@ -864,8 +865,18 @@ void app_main(void)
     esp_err_t err = esp_vfs_fat_spiflash_mount_rw_wl(base_path, "storage", &mount_config, &s_wl_handle);
 
     // Write to file
-    FILE *f = fopen("/spiflash/cred.txt", "wb");
-    fputs("Gmail:username@user.name:gmail's password\nCanvas:Canvas@canvas.user:canvas pass\nPiazza:Piazza@piazza.user:huge piazza w\nGradescope:Gradescope@user.name:big L\n", f);
+    ESP_LOGI(TAG, "Check if file exists");
+    FILE *f = fopen("/spiflash/cred.txt", "r");
+    if (f == NULL)
+    {
+        ESP_LOGE(TAG, "File does not exist. Initializing.");
+        fputs("Gmail:username@user.name:gmail's password\nCanvas:Canvas@canvas.user:canvas pass\nPiazza:Piazza@piazza.user:huge piazza w\nGradescope:Gradescope@user.name:big L\n", f);
+        return;
+    }
+    else
+    {
+        ESP_LOGE(TAG, "File exists");
+    }
     fclose(f);
 }
 

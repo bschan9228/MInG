@@ -1,6 +1,6 @@
-set(CMAKE_HOST_SYSTEM "Windows-10.0.22623")
+set(CMAKE_HOST_SYSTEM "Windows-10.0.22624")
 set(CMAKE_HOST_SYSTEM_NAME "Windows")
-set(CMAKE_HOST_SYSTEM_VERSION "10.0.22623")
+set(CMAKE_HOST_SYSTEM_VERSION "10.0.22624")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "AMD64")
 
 include("C:/Users/bscha/esp/esp-idf/tools/cmake/toolchain-esp32s3.cmake")
