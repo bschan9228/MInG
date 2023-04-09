@@ -1,9 +1,9 @@
 # MInG
-ECE 196 Project
+MInG is a hardware password manager built for ECE 196 Winter 2023. More information can be found below: 
 
-Team 5
+https://bschan9228.github.io/MInG/
 
-Winter 2023
+https://docs.google.com/document/d/1XQeUcRW4mPYvgZ0W_UPjm9wVBVjZgWeWX6C9jlaiZSg/edit
 
 
 ![IMG_0263](https://user-images.githubusercontent.com/72418944/224595578-f3e10ea8-f130-46e8-badf-b06925e4d3ab.jpg)
