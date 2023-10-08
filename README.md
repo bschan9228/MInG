@@ -1,5 +1,5 @@
 # MInG
-MInG is a hardware password manager built for ECE 196 Winter 2023. More information can be found below: 
+MInG is a hardware password manager. More information can be found below: 
 
 https://bschan9228.github.io/MInG/
 
